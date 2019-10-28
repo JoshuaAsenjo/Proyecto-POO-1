@@ -16,10 +16,11 @@ public class Interfaz extends javax.swing.JFrame {
     /**
      * Creates new form Interfaz
      */
-    public Interfaz() {
+    public Interfaz(String titulo) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(823);
+        txt_titulo.setText(titulo);
     }
     
     @Override
@@ -43,7 +44,7 @@ public class Interfaz extends javax.swing.JFrame {
         BtnRetiroArticulos = new javax.swing.JButton();
         BtnAdministracionEntregables = new javax.swing.JButton();
         NombreCounter = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txt_titulo = new javax.swing.JTextArea();
         jLabelFondo = new javax.swing.JLabel();
         jMenuBarInterfaz = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -114,12 +115,12 @@ public class Interfaz extends javax.swing.JFrame {
         NombreCounter.setForeground(new java.awt.Color(255, 255, 255));
         NombreCounter.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        jTextArea2.setBackground(new java.awt.Color(0, 102, 153));
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
-        jTextArea2.setForeground(new java.awt.Color(0, 51, 51));
-        jTextArea2.setRows(5);
-        NombreCounter.setViewportView(jTextArea2);
+        txt_titulo.setBackground(new java.awt.Color(0, 102, 153));
+        txt_titulo.setColumns(20);
+        txt_titulo.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
+        txt_titulo.setForeground(new java.awt.Color(0, 51, 51));
+        txt_titulo.setRows(5);
+        NombreCounter.setViewportView(txt_titulo);
 
         getContentPane().add(NombreCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 280, -1));
 
@@ -214,7 +215,7 @@ public class Interfaz extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Interfaz().setVisible(true);
+                new Interfaz(null).setVisible(true);
             }
         });
     }
@@ -231,6 +232,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBarInterfaz;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea txt_titulo;
     // End of variables declaration//GEN-END:variables
 }

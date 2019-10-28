@@ -34,7 +34,7 @@ public class CreacionCounter extends javax.swing.JFrame {
         jLabelCedulaJuridica = new javax.swing.JLabel();
         jLabelDireccionCounter = new javax.swing.JLabel();
         jLabelCantidadCasilleros = new javax.swing.JLabel();
-        jTextFieldNombreCounter = new javax.swing.JTextField();
+        txt_nombre = new javax.swing.JTextField();
         jTextFieldCedulaJuridica = new javax.swing.JTextField();
         jTextFieldDireccion = new javax.swing.JTextField();
         jTextFieldCantidadCasilleros = new javax.swing.JTextField();
@@ -75,13 +75,13 @@ public class CreacionCounter extends javax.swing.JFrame {
         jLabelCantidadCasilleros.setText("Cantidad de Casilleros");
         getContentPane().add(jLabelCantidadCasilleros, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
 
-        jTextFieldNombreCounter.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextFieldNombreCounter.addActionListener(new java.awt.event.ActionListener() {
+        txt_nombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreCounterActionPerformed(evt);
+                txt_nombreActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldNombreCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 180, -1));
+        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 180, -1));
 
         jTextFieldCedulaJuridica.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         getContentPane().add(jTextFieldCedulaJuridica, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 180, -1));
@@ -101,7 +101,7 @@ public class CreacionCounter extends javax.swing.JFrame {
                 jButtonCrearCounterActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCrearCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 373, 150, 60));
+        getContentPane().add(jButtonCrearCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, 150, 60));
 
         jLabelIconoCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/paqueteria.png"))); // NOI18N
         getContentPane().add(jLabelIconoCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 520, 370));
@@ -123,16 +123,16 @@ public class CreacionCounter extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldNombreCounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreCounterActionPerformed
+    private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNombreCounterActionPerformed
+    }//GEN-LAST:event_txt_nombreActionPerformed
 
     private void jButtonSalirCounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirCounterActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButtonSalirCounterActionPerformed
 
     private void jButtonCrearCounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearCounterActionPerformed
-        Interfaz abrir= new Interfaz();
+        Interfaz abrir= new Interfaz(txt_nombre.getText());
         abrir.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonCrearCounterActionPerformed
@@ -186,6 +186,6 @@ public class CreacionCounter extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldCantidadCasilleros;
     private javax.swing.JTextField jTextFieldCedulaJuridica;
     private javax.swing.JTextField jTextFieldDireccion;
-    private javax.swing.JTextField jTextFieldNombreCounter;
+    private javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables
 }
