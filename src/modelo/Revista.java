@@ -17,7 +17,8 @@ public class Revista {
     public Revista() {
     }
 
-    public Revista(String tema, boolean catalogo) {
+    public Revista(String nombre, String tema, boolean catalogo) {
+        this.nombre = nombre;
         this.tema = tema;
         this.catalogo = catalogo;
     }

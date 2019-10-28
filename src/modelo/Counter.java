@@ -89,7 +89,7 @@ public class Counter {
         System.out.println("Ingresado al inventario");
     }
  
-    public void buscarCliente( int id){
+    public AdministradorClientes buscarCliente(int id){
        
       for (int i = 0; i < listaAdmi.size(); i++) {
             AdministradorClientes buscado = listaAdmi.get(i);
@@ -97,12 +97,13 @@ public class Counter {
                 
                 System.out.println("Encontrado: ");
                 System.out.println(buscado);
-                return;
+                return buscado;
             }
                
         }
-                
+               
             System.out.println("No se encontro cliente solicitado");
+            return null;    
     }
     
     public boolean quitarAdmiCliente( int id){

@@ -118,29 +118,47 @@ public class Entregable {
         return sobre;
     }
 
-    public void setSobre(Sobre sobre) {
+    public void setSobre(boolean tipoSobre, String contenido) {
         if (this.tipo == TipoEntregable.Sobre){
-            Sobre sobre= new Sobre(manila,contenido);
-
-        else
+            Sobre sobr= new Sobre(tipoSobre, contenido);
+            this.sobre=sobr;
         }
-        this.sobre = sobre;
+        else{
+            this.sobre = null;
+                    
+        }
     }
+       
+    
 
     public Paquete getPaquete() {
         return paquete;
     }
 
-    public void setPaquete(Paquete paquete) {
-        this.paquete = paquete;
+    public void setPaquete(boolean fragil,boolean empaque,boolean electro) {    //F Para No Fragil V Para Fragil
+        if (this.tipo == TipoEntregable.Paquete){                               //F Para bolsa V Para Caja 
+            Paquete paque= new Paquete(fragil, empaque, electro);                    //F para No V Para Sí
+            this.paquete=paque;
+        }
+        else{
+            this.paquete = null;
+                    
+        }
     }
 
     public Revista getRevista() {
         return revista;
     }
 
-    public void setRevista(Revista revista) {
-        this.revista = revista;
+    public void setRevista(String nombre, String tema, boolean catalogo) {
+        if (this.tipo == TipoEntregable.Revista){                               //F Para bolsa V Para Caja 
+            Revista revist = new Revista(nombre, tema, catalogo);                    //F para No V Para Sí
+            this.revista= revist;
+        }
+        else{
+            this.paquete = null;
+                    
+        }
     }
 
     public long getCostoArticulo() {
