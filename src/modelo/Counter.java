@@ -13,8 +13,7 @@ public class Counter {
     private String nombre;
     private int cedulaJuridica;
     private String direccion;
-    private int cantCasilleros;
-    private ArrayList<Cliente> listaClientes;
+    private int cantCasilleros;    
     private ArrayList<Casillero> listaCasillero;
     private ArrayList<AdministradorClientes> listaAdmi;
 
@@ -41,7 +40,7 @@ public class Counter {
     
     public void InsertarCounter(Counter c){
                 
-                lista_counter.add(c);
+        lista_counter.add(c);
                  
     }
 
@@ -61,18 +60,6 @@ public class Counter {
         this.cedulaJuridica = cedulaJuridica;
     }
 
-    public ArrayList<Cliente> getListaClientes() {
-        return listaClientes;
-    }
-
-    public void setListaClientes() {
-        for (int i = 0; i < listaAdmi.size(); i++) {
-            AdministradorClientes client = listaAdmi.get(i);
-            this.listaClientes.add(client.getCliente());        
-        }
-        
-       
-    }
 
     public String getDireccion() {
         return direccion;
@@ -190,7 +177,7 @@ public class Counter {
         }   
         return false;
     }
-
+/*
     public ArrayList<Cliente> mostrarClientePendiente(){
         ArrayList<Cliente> auxCliente;
         for (int i = 0; i < listaAdmi.size(); i++) {
@@ -205,7 +192,7 @@ public class Counter {
         return auxIngreso;
     }    
     
-
+*/
     @Override
     public String toString() {
         return "Counter{" + "nombre=" + nombre + ", cedulaJuridica=" + cedulaJuridica + ", direccion=" + direccion + ", cantCasilleros=" + cantCasilleros + ", listaCasillero=" + listaCasillero + ", listaAdmi=" + listaAdmi + '}';

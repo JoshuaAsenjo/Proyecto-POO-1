@@ -152,7 +152,7 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
-        System.exit(0);
+        show(false);
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void BtnRecepcionArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRecepcionArticulosActionPerformed

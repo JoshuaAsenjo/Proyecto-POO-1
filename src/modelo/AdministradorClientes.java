@@ -60,7 +60,7 @@ public class AdministradorClientes {
 
     
     @Override
-    public String toString() {
+    public String toString() {        
         return "AdministradorClientes{" + "cliente=" 
                 + cliente + ", casillero=" 
                 + casillero + ", cantidadRecibidos=" 

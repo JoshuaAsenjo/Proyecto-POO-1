@@ -6,6 +6,8 @@
 package vista;
 
 import control.Controlador;
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 import modelo.*;
 
 public class Principal extends javax.swing.JFrame {
@@ -39,6 +41,11 @@ public class Principal extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ver Counter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, 50));
 
         jButton2.setBackground(new java.awt.Color(0, 102, 153));
@@ -63,6 +70,12 @@ public class Principal extends javax.swing.JFrame {
         con.Iniciar();
         vista_counter.show();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        con.Inicar_Mostrar_Counter();
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

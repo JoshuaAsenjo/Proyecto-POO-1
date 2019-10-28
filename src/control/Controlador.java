@@ -27,7 +27,7 @@ public class Controlador implements ActionListener{
     private CreacionCounter vista_counter;
     
     //Modelo Counter
-    private Counter model_counter;
+    public Counter model_counter;
     
     private ArrayList<Cliente> listaClientes;
     private String Venta;
@@ -72,13 +72,26 @@ public class Controlador implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent e){
-        
+                        
         String nombre = vista_counter.txt_nombre.getText();
         int cedula = Integer.parseInt(vista_counter.txt_CedulaJuridica.getText());
         String dir = vista_counter.txt_Dir.getText();
         int cantidad = Integer.parseInt(vista_counter.txt_cantidad.getText());                
                
-        model_counter.InsertarCounter(new Counter(nombre, cedula, dir, cantidad));                       
+        model_counter.InsertarCounter(new Counter(nombre, cedula, dir, cantidad,null,null)); 
+                
+    }
+    
+    public ArrayList<Counter> MostrarCounter(){
+        
+        return model_counter.lista_counter;
+        
+    }
+    
+    public void Inicar_Mostrar_Counter(){
+        TablaCounters t = new TablaCounters(MostrarCounter());
+        t.show();
+        
     }
     /*
     *Este metodo registra un cliente en el programa
@@ -167,7 +180,7 @@ public class Controlador implements ActionListener{
     public boolean modificarTelefonoCliente(int pId, int pTelefono){
         for(int i = 0; i<listaClientes.size();i++){
             if(listaClientes.get(i).getpId() == pId){
-                listaClientes.get(i).setpTelefono(pTelefono);
+                //listaClientes.get(i).setpTelefono(pTelefono);
                 return true;
             }
         }
