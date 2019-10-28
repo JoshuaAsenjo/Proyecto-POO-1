@@ -13,7 +13,11 @@ public class AdministradorClientes {
     private Cliente cliente;
     private Casillero casillero;
     private int cantidadRecibidos;
+<<<<<<< HEAD
  
+=======
+    //private NivelCliente nivelCliente;
+>>>>>>> 123358e3295232d79c6651bdfbc6dab47f5fd6a2
 
     public AdministradorClientes(Cliente cliente, Casillero casillero, int cantidadRecibidos) {
         this.cliente = cliente;
@@ -47,7 +51,11 @@ public class AdministradorClientes {
     public void setCantidadRecibidos(int cantidadRecibidos) {
         this.cantidadRecibidos = cantidadRecibidos;
     }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 123358e3295232d79c6651bdfbc6dab47f5fd6a2
 
     
     
