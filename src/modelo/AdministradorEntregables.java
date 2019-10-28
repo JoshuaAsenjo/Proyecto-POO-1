@@ -13,6 +13,9 @@ import java.util.ArrayList;
  */
 public class AdministradorEntregables {
     private ArrayList<Entregable> listaEntregables;
+    private ArrayList<Entregable> listaFechaIngreso;
+    private ArrayList<Entregable> listaFechaRetiro;
+    private ArrayList<Entregable> listaPorRetirar;
 
     public AdministradorEntregables(ArrayList<Entregable> listaEntregables) {
         this.listaEntregables = listaEntregables;
@@ -29,6 +32,55 @@ public class AdministradorEntregables {
         this.listaEntregables = listaEntregables;
     }
 
+    public void annadirEntrega(Entregable entrega){
+        for (int i = 0; i < listaEntregables.size(); i++) {
+            Entregable entregables = listaEntregables.get(i);
+            if (entregables.getId()== entrega.getId()){
+                System.out.println("No pudo ser ingresado");
+             }
+        }   
+        listaEntregables.add(entrega);
+        System.out.println("Ingresado al inventario");
+    }
+    
+    public ArrayList<Entregable> mostrarFechaIngreso(String fechaIngreso){
+        for (int i = 0; i < listaEntregables.size(); i++) {
+            Entregable entregables = listaEntregables.get(i);
+            if (entregables.getFechaIngreso().equals(fechaIngreso) ){
+                listaFechaIngreso.add(entregables);
+                
+             }
+        }
+        ArrayList<Entregable> auxIngreso = listaFechaIngreso;
+        listaFechaIngreso.clear();
+        return auxIngreso;
+    }
+    
+    public ArrayList<Entregable> mostrarFechaRetiro(String fechaRetiro){
+        for (int i = 0; i < listaEntregables.size(); i++) {
+            Entregable entregables = listaEntregables.get(i);
+            if (entregables.getFechaRetiro().equals(fechaRetiro) ){
+                listaFechaRetiro.add(entregables);
+                
+             }
+        }
+        ArrayList<Entregable> auxRetiro = listaFechaRetiro;
+        listaFechaRetiro.clear();
+        return auxRetiro;
+    }
+     public ArrayList<Entregable> mostrarPorRetirar(){
+        for (int i = 0; i < listaEntregables.size(); i++) {
+            Entregable entregables = listaEntregables.get(i);
+            if (entregables.getEstado()) {
+                listaPorRetirar.add(entregables);
+                
+             }
+        }
+        ArrayList<Entregable> auxPorRetirar = listaPorRetirar;
+        listaPorRetirar.clear();
+        return auxPorRetirar;
+    }
+ 
     @Override
     public String toString() {
         return "AdministradorEntregables{" + "listaEntregables=" + listaEntregables + '}';

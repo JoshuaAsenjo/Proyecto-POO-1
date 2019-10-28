@@ -13,7 +13,7 @@ public class Cliente {
     private int pId;
     private String pNombre;
     private String pCorreo;
-    private int pTelefono;
+    private String pTelefono;
     private String pDireccion;
     private boolean pSexo;
     private Date fechaNacimiento;
@@ -21,7 +21,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int pId, String pNombre, String pCorreo, int pTelefono, String pDireccion, boolean pSexo, Date fechaNacimiento) {
+    public Cliente(int pId, String pNombre, String pCorreo, String pTelefono, String pDireccion, boolean pSexo, Date fechaNacimiento) {
         this.pId = pId;
         this.pNombre = pNombre;
         this.pCorreo = pCorreo;
@@ -47,7 +47,7 @@ public class Cliente {
         return pCorreo;
     }
 
-    public int getpTelefono() {
+    public String getpTelefono() {
         return pTelefono;
     }
 
@@ -75,7 +75,7 @@ public class Cliente {
         this.pCorreo = pCorreo;
     }
 
-    public void setpTelefono(int pTelefono) {
+    public void setpTelefono(String pTelefono) {
         this.pTelefono = pTelefono;
     }
 
@@ -89,6 +89,12 @@ public class Cliente {
 
     public void setFechaDeNacimiento(Date fechaDeNacimiento) {
         this.fechaNacimiento = fechaDeNacimiento;
+    }
+    
+    public boolean validarTelefono(){
+        String telefono = getpTelefono();
+        return telefono.length()==8;
+        
     }
     
     

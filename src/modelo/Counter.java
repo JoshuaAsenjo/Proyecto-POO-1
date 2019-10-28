@@ -14,6 +14,7 @@ public class Counter {
     private int cedulaJuridica;
     private String direccion;
     private int cantCasilleros;
+    private ArrayList<Cliente> listaClientes;
     private ArrayList<Casillero> listaCasillero;
     private ArrayList<AdministradorClientes> listaAdmi;
 
@@ -44,6 +45,19 @@ public class Counter {
 
     public void setCedulaJuridica(int cedulaJuridica) {
         this.cedulaJuridica = cedulaJuridica;
+    }
+
+    public ArrayList<Cliente> getListaClientes() {
+        return listaClientes;
+    }
+
+    public void setListaClientes() {
+        for (int i = 0; i < listaAdmi.size(); i++) {
+            AdministradorClientes client = listaAdmi.get(i);
+            this.listaClientes.add(client.getCliente());        
+        }
+        
+       
     }
 
     public String getDireccion() {
@@ -162,6 +176,21 @@ public class Counter {
         }   
         return false;
     }
+
+    public ArrayList<Cliente> mostrarClientePendiente(){
+        ArrayList<Cliente> auxCliente;
+        for (int i = 0; i < listaAdmi.size(); i++) {
+            AdministradorClientes client = listaAdmi.get(i);
+            if (client.) ){
+                listaFechaIngreso.add(entregables);
+                
+             }
+        }
+        ArrayList<Entregable> auxIngreso = listaFechaIngreso;
+        listaFechaIngreso.clear();
+        return auxIngreso;
+    }    
+    
 
     @Override
     public String toString() {

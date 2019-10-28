@@ -58,7 +58,7 @@ public class Entregable {
         this.tipo = tipo;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 

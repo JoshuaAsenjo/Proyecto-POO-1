@@ -13,12 +13,14 @@ public class AdministradorClientes {
     private Cliente cliente;
     private Casillero casillero;
     private int cantidadRecibidos;
+    private int cantidadPorRetirar;
 
 
-    public AdministradorClientes(Cliente cliente, Casillero casillero, int cantidadRecibidos) {
+    public AdministradorClientes(Cliente cliente, Casillero casillero, int cantidadRecibidos, int cantidadPorRetirar) {
         this.cliente = cliente;
         this.casillero = casillero;
         this.cantidadRecibidos = cantidadRecibidos;
+        this.cantidadPorRetirar = cantidadPorRetirar;
     }
 
     public AdministradorClientes() {
@@ -46,6 +48,14 @@ public class AdministradorClientes {
 
     public void setCantidadRecibidos(int cantidadRecibidos) {
         this.cantidadRecibidos = cantidadRecibidos;
+    }
+
+    public int getCantidadPorRetirar() {
+        return cantidadPorRetirar;
+    }
+
+    public void setCantidadPorRetirar(int cantidadPorRetirar) {
+        this.cantidadPorRetirar = cantidadPorRetirar;
     }
 
     
