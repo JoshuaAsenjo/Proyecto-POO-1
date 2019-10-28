@@ -15,6 +15,7 @@ class Casillero {
     private int numero;
     private boolean estado;
     private ArrayList<Entregable> listaEntregables;
+    private ArrayList<Entregable> listaRetirados;
 
     public Casillero(int numero, boolean estado, ArrayList<Entregable> listaEntregables) {
         this.numero = numero;
@@ -41,6 +42,14 @@ class Casillero {
         this.estado = estado;
     }
 
+    public ArrayList<Entregable> getListaRetirados() {
+        return listaRetirados;
+    }
+
+    public void setListaRetirados(ArrayList<Entregable> listaRetirados) {
+        this.listaRetirados = listaRetirados;
+    }
+
     public ArrayList<Entregable> getListaEntregables() {
         return listaEntregables;
     }
@@ -49,17 +58,23 @@ class Casillero {
         this.listaEntregables = listaEntregables;
     }
     
+    public boolean annadirARetirados(Entregable entrega){
+        listaRetirados.add(entrega);
+        return true;
+
+    }
+    
+    
     public void annadirEntregable(Entregable entrega){
         for (int i = 0; i < listaEntregables.size(); i++) {
             Entregable repetido = listaEntregables.get(i);
             if (repetido.getId()== entrega.getId()){
-                System.out.println("No pudo ser ingresado");
              }
         }   
         listaEntregables.add(entrega);
-        System.out.println("Ingresado al inventario");
     }
 
+    
     @Override
     public String toString() {
         return "Casillero{" +

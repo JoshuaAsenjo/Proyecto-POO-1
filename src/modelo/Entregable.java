@@ -119,6 +119,11 @@ public class Entregable {
     }
 
     public void setSobre(Sobre sobre) {
+        if (this.tipo == TipoEntregable.Sobre){
+            Sobre sobre= new Sobre(manila,contenido);
+
+        else
+        }
         this.sobre = sobre;
     }
 

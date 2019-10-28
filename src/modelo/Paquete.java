@@ -24,18 +24,6 @@ public class Paquete {
         this.electronico = electronico;
     }
 
-    public boolean isFragilidad() {
-        return fragilidad;
-    }
-
-    public boolean isEmpaque() {
-        return empaque;
-    }
-
-    public boolean isElectronico() {
-        return electronico;
-    }
-
 
     public void setFragilidad(boolean fragilidad) {
         this.fragilidad = fragilidad;
