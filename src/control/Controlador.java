@@ -5,7 +5,11 @@
  */
 package control;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import modelo.Web_Service;
 import modelo.Cliente;
 import modelo.Counter;
 
@@ -18,6 +22,9 @@ public class Controlador {
     private Controlador singlenton;
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Counter> listaCounters;
+    private String Venta;
+    private String Compra;
+    public Web_Service service = new Web_Service();
     /*
     *Este metodo retorna la instancia del controlador
     *@return singlenton: retorna la instancia
@@ -29,9 +36,10 @@ public class Controlador {
         }
         return singlenton;
     }
-    private Controlador(){
+    public Controlador(){
         
     }
+    
     /*
     *Este metodo registra un counter al programa
     *@param pNombre : Nombre del counter
@@ -182,5 +190,28 @@ public class Controlador {
     */
     public ArrayList<Cliente> obtenerClientesRegistrados(){
         return listaClientes;
+    }
+
+    /**
+     * @return the Venta
+     */
+    public String getVenta() {
+        
+        return service.Send_Request_Soap("318", getDate(), getDate(), "Venta");
+    }
+
+    /**
+     * @return the Compra
+     */
+    public String getCompra() {
+        return service.Send_Request_Soap("317", getDate(), getDate(), "Compra");
+    }
+    
+    public String getDate(){
+        
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");        
+        
+        return formatter.format(date);
     }
 }

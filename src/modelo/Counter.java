@@ -7,10 +7,6 @@ package modelo;
 import java.util.ArrayList;
 
 
-/**
- *
- * @author Gerson
- */
 public class Counter {
     
     

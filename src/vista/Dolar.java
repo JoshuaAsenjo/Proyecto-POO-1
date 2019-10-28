@@ -5,17 +5,16 @@
  */
 package vista;
 
-/**
- *
- * @author joshu
- */
+import control.Controlador;
+
 public class Dolar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Dolar
-     */
+    public Controlador con = new Controlador();
+    
     public Dolar() {
         initComponents();
+        txt_compra.setText(con.getCompra());
+        txt_venta.setText(con.getVenta());
     }
 
     /**
@@ -27,24 +26,41 @@ public class Dolar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
+        txt_venta = new javax.swing.JLabel();
+        txt_compra = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         FondoDolar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Venta");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
+
+        txt_venta.setBackground(new java.awt.Color(255, 255, 255));
+        txt_venta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_venta.setForeground(new java.awt.Color(255, 255, 255));
+        txt_venta.setText("N/S");
+        getContentPane().add(txt_venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, -1, -1));
+
+        txt_compra.setBackground(new java.awt.Color(255, 255, 255));
+        txt_compra.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_compra.setForeground(new java.awt.Color(255, 255, 255));
+        txt_compra.setText("N/S");
+        getContentPane().add(txt_compra, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Compra");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, -1, -1));
 
         FondoDolar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoCounter.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(FondoDolar, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(FondoDolar, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(FondoDolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 304));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -86,5 +102,9 @@ public class Dolar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FondoDolar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel txt_compra;
+    private javax.swing.JLabel txt_venta;
     // End of variables declaration//GEN-END:variables
 }
