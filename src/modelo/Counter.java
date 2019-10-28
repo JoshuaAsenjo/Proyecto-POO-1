@@ -17,6 +17,7 @@ public class Counter {
     private ArrayList<Casillero> listaCasillero;
     private ArrayList<AdministradorClientes> listaAdmi;
 
+    public ArrayList<Counter> lista_counter = new ArrayList<Counter>();
 
     public Counter() {
     }
@@ -28,6 +29,15 @@ public class Counter {
         this.cantCasilleros = cantCasilleros;
         this.listaCasillero = listaCasillero;
         this.listaAdmi = listaAdmi;
+    }
+    
+    public void InsertarCounter(Counter c){
+        
+        for(int i = 0; i<=lista_counter.size();i++){
+            if(c.getCedulaJuridica() != lista_counter.get(i).getCedulaJuridica()){
+                lista_counter.add(c);
+            }
+        }        
     }
 
     public String getNombre() {

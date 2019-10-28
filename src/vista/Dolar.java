@@ -9,12 +9,12 @@ import control.Controlador;
 
 public class Dolar extends javax.swing.JFrame {
 
-    public Controlador con = new Controlador();
+    //public Controlador con = new Controlador();
     
     public Dolar() {
         initComponents();
-        txt_compra.setText(con.getCompra());
-        txt_venta.setText(con.getVenta());
+        //txt_compra.setText(con.getCompra());
+        //txt_venta.setText(con.getVenta());
     }
 
     /**

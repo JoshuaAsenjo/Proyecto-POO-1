@@ -5,12 +5,15 @@
  */
 package vista;
 
-/**
- *
- * @author Usuario
- */
+import control.Controlador;
+import modelo.*;
+
 public class Principal extends javax.swing.JFrame {
 
+    Counter model_counter = new Counter();
+    CreacionCounter vista_counter = new CreacionCounter();
+    
+    Controlador con = new Controlador(vista_counter, model_counter);
     
     public Principal() {
         initComponents();
@@ -57,8 +60,8 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        CreacionCounter creacion = new CreacionCounter();
-        creacion.show();
+        con.Iniciar();
+        vista_counter.show();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
