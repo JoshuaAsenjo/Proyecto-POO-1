@@ -78,7 +78,7 @@ public class Controlador implements ActionListener{
         String dir = vista_counter.txt_Dir.getText();
         int cantidad = Integer.parseInt(vista_counter.txt_cantidad.getText());                
                
-        model_counter.InsertarCounter(new Counter(nombre, cedula, dir, cantidad, null, null));                        
+        model_counter.InsertarCounter(new Counter(nombre, cedula, dir, cantidad));                       
     }
     /*
     *Este metodo registra un cliente en el programa

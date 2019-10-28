@@ -32,13 +32,17 @@ public class Counter {
         this.listaAdmi = listaAdmi;
     }
     
+    public Counter(String nombre, int cedulaJuridica, String direccion, int cantCasilleros){
+        this.nombre = nombre;
+        this.cedulaJuridica = cedulaJuridica;
+        this.direccion = direccion;
+        this.cantCasilleros = cantCasilleros;
+    }
+    
     public void InsertarCounter(Counter c){
-        
-        for(int i = 0; i<=lista_counter.size();i++){
-            if(c.getCedulaJuridica() != lista_counter.get(i).getCedulaJuridica()){
+                
                 lista_counter.add(c);
-            }
-        }        
+                 
     }
 
     public String getNombre() {
