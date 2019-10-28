@@ -93,15 +93,20 @@ public class Counter {
         this.listaAdmi = listaAdmi;
     }
 
-    public void annadirAdmiCliente(AdministradorClientes cliente){
+    public boolean annadirAdmiCliente(AdministradorClientes cliente){
         for (int i = 0; i < listaAdmi.size(); i++) {
             AdministradorClientes sacado = listaAdmi.get(i);
-            if (sacado.getCliente().getpId()== cliente.getCliente().getpId()){
-                System.out.println("No pudo ser ingresado");
-             }
+            if (sacado.getCliente().getpId()== cliente.getCliente().getpId() ){
+                System.out.println("Cliente ya esta ingresado");
+                return false;
+            }else if(sacado.getCasillero().getNumero() == cliente.getCasillero().getNumero()){
+                System.out.println("Casillero ya Asignado");
+                return false;
+            }
         }   
-        listaAdmi.add(cliente);
-        System.out.println("Ingresado al inventario");
+        listaAdmi.add(cliente);        
+        System.out.println("Su casillero es: "+ cliente.getCasillero().getNumero());
+        return true;
     }
  
     public AdministradorClientes buscarCliente(int id){
@@ -135,12 +140,15 @@ public class Counter {
          return false; 
     }
     
-        public String mostrarClientes() {
+    public ArrayList<Cliente> mostrarClientes() {
+        ArrayList<Cliente> auxClient = null;
         for(int i=0; i<listaAdmi.size();i++){
             AdministradorClientes imprimir= listaAdmi.get(i);
-            System.out.println("\n"+imprimir);
+            listaClientes.add(imprimir.getCliente());
         }
-        return "";
+        auxClient = listaClientes;
+        listaClientes.clear();
+        return listaClientes;
     }
     
     public boolean registrarEntregable(Entregable entrega){
@@ -177,6 +185,7 @@ public class Counter {
         }   
         return false;
     }
+<<<<<<< HEAD
 /*
     public ArrayList<Cliente> mostrarClientePendiente(){
         ArrayList<Cliente> auxCliente;
@@ -197,6 +206,29 @@ public class Counter {
     public String toString() {
         return "Counter{" + "nombre=" + nombre + ", cedulaJuridica=" + cedulaJuridica + ", direccion=" + direccion + ", cantCasilleros=" + cantCasilleros + ", listaCasillero=" + listaCasillero + ", listaAdmi=" + listaAdmi + '}';
     }
+=======
+
+//    public ArrayList<Cliente> mostrarClientePendiente(){
+//        ArrayList<Cliente> auxCliente;
+//        
+//        for (int i = 0; i < listaAdmi.size(); i++) {
+//            AdministradorClientes client = listaAdmi.get(i);
+//          
+//            }
+//                
+//             }
+//        }
+//        ArrayList<Entregable> auxIngreso = listaFechaIngreso;
+//        listaFechaIngreso.clear();
+//        return auxIngreso;
+//    }    
+//    
+//
+//    @Override
+//    public String toString() {
+//        return "Counter{" + "nombre=" + nombre + ", cedulaJuridica=" + cedulaJuridica + ", direccion=" + direccion + ", cantCasilleros=" + cantCasilleros + ", listaCasillero=" + listaCasillero + ", listaAdmi=" + listaAdmi + '}';
+//    }
+>>>>>>> 6c2aedb97e486d644eb74bb95fba0259b1dc165d
     
     
     
