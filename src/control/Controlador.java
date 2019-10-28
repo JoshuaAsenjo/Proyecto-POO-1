@@ -6,29 +6,40 @@
 package control;
 
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import modelo.Web_Service;
-import modelo.Cliente;
-import modelo.Counter;
+import modelo.*;
+
+import vista.*;
 
 
 /**
  *
  * @author luisf
  */
-public class Controlador {
+public class Controlador implements ActionListener{
     private Controlador singlenton;
+    
+    //Vista
+    private CreacionCounter vista_counter;
+    
+    //Modelo Counter
+    private Counter model_counter;
+    
     private ArrayList<Cliente> listaClientes;
-    private ArrayList<Counter> listaCounters;
     private String Venta;
     private String Compra;
     public Web_Service service = new Web_Service();
+    
     /*
     *Este metodo retorna la instancia del controlador
     *@return singlenton: retorna la instancia
     */
+    
+    /*
     public Controlador getInstance(){
         if(singlenton == null){
             singlenton = new Controlador();
@@ -36,8 +47,11 @@ public class Controlador {
         }
         return singlenton;
     }
-    public Controlador(){
-        
+    */
+    
+    public Controlador(CreacionCounter vista_counter, Counter model_counter){
+        this.model_counter = model_counter;
+        this.vista_counter = vista_counter;
     }
     
     /*
@@ -49,17 +63,22 @@ public class Controlador {
     *@return true: Si el counter se agrego correctamente
     *@return false: Si el counter ya existia, no se agrega
     */
-    public boolean agregarCounter(String pNombre, int pId, String pDireccion,
-            int pCantCasilleros){
-        Counter posible = new Counter();
-        for(int i = 0; i < listaCounters.size();i++){
-            if(posible.equals(listaCounters.get(i))){
-                return false;
-            }
-        }
-        listaCounters.add(posible);
-        return true;
+    
+    public void Iniciar(){
+        this.vista_counter.setTitle("Creación Counter");
+        this.vista_counter.setLocationRelativeTo(null);
+        this.vista_counter.jButtonCrearCounter.addActionListener(this);
         
+    }
+    
+    public void actionPerformed(ActionEvent e){
+        
+        String nombre = vista_counter.txt_nombre.getText();
+        int cedula = Integer.parseInt(vista_counter.txt_CedulaJuridica.getText());
+        String dir = vista_counter.txt_Dir.getText();
+        int cantidad = Integer.parseInt(vista_counter.txt_cantidad.getText());                
+               
+        model_counter.InsertarCounter(new Counter(nombre, cedula, dir, cantidad, null, null));                        
     }
     /*
     *Este metodo registra un cliente en el programa
@@ -215,4 +234,5 @@ public class Controlador {
         
         return formatter.format(date);
     }
+  
 }

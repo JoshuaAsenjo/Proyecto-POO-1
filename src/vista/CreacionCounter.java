@@ -5,15 +5,10 @@
  */
 package vista;
 
-/**
- *
- * @author joshu
- */
-public class CreacionCounter extends javax.swing.JFrame {
+import control.Controlador;
 
-    /**
-     * Creates new form CreacionCounter
-     */
+public class CreacionCounter extends javax.swing.JFrame {    
+    
     public CreacionCounter() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -174,7 +169,7 @@ public class CreacionCounter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCrearCounter;
+    public javax.swing.JButton jButtonCrearCounter;
     private javax.swing.JButton jButtonSalirCounter;
     private javax.swing.JLabel jLabelCantidadCasilleros;
     private javax.swing.JLabel jLabelCedulaJuridica;
@@ -184,9 +179,9 @@ public class CreacionCounter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelNombreCounter;
     private javax.swing.JLabel jLabelTituloCounter;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField txt_CedulaJuridica;
-    private javax.swing.JTextField txt_Dir;
-    private javax.swing.JTextField txt_cantidad;
-    private javax.swing.JTextField txt_nombre;
+    public javax.swing.JTextField txt_CedulaJuridica;
+    public javax.swing.JTextField txt_Dir;
+    public javax.swing.JTextField txt_cantidad;
+    public javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables
 }
