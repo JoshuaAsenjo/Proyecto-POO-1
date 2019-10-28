@@ -30,7 +30,7 @@ public class Entregable {
     public Entregable(int id, TipoEntregable tipo, boolean estado, String descripcion, String remitente, String fechaIngreso, String fechaRetiro, long peso, Sobre sobre, Paquete paquete, Revista revista, long costoArticulo) {
         this.id = id;
         this.tipo = tipo;
-        this.estado = estado;
+        this.estado = estado;//TRUE SI NO HA SIDO RETIRADO, FALSE SI YA SE RETIRO
         this.descripcion = descripcion;
         this.remitente = remitente;
         this.fechaIngreso = fechaIngreso;
