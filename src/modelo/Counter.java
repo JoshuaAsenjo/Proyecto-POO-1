@@ -140,16 +140,17 @@ public class Counter {
          return false; 
     }
     
-    public ArrayList<Cliente> mostrarClientes() {
-        ArrayList<Cliente> auxClient = null;
-        for(int i=0; i<listaAdmi.size();i++){
-            AdministradorClientes imprimir= listaAdmi.get(i);
-            listaClientes.add(imprimir.getCliente());
-        }
-        auxClient = listaClientes;
-        listaClientes.clear();
-        return listaClientes;
-    }
+ 
+//    public ArrayList<Cliente> mostrarClientes() {
+//        ArrayList<Cliente> auxClient = null;
+//        for(int i=0; i<listaAdmi.size();i++){
+//            AdministradorClientes imprimir= listaAdmi.get(i);
+//            listaClientes.add(imprimir.getCliente());
+//        }
+//        auxClient = listaClientes;
+//        listaClientes.clear();
+//        return listaClientes;
+//    }
     
     public boolean registrarEntregable(Entregable entrega){
         String duenno= entrega.getRemitente();
@@ -185,7 +186,7 @@ public class Counter {
         }   
         return false;
     }
-<<<<<<< HEAD
+
 /*
     public ArrayList<Cliente> mostrarClientePendiente(){
         ArrayList<Cliente> auxCliente;
@@ -206,7 +207,7 @@ public class Counter {
     public String toString() {
         return "Counter{" + "nombre=" + nombre + ", cedulaJuridica=" + cedulaJuridica + ", direccion=" + direccion + ", cantCasilleros=" + cantCasilleros + ", listaCasillero=" + listaCasillero + ", listaAdmi=" + listaAdmi + '}';
     }
-=======
+
 
 //    public ArrayList<Cliente> mostrarClientePendiente(){
 //        ArrayList<Cliente> auxCliente;
@@ -228,7 +229,7 @@ public class Counter {
 //    public String toString() {
 //        return "Counter{" + "nombre=" + nombre + ", cedulaJuridica=" + cedulaJuridica + ", direccion=" + direccion + ", cantCasilleros=" + cantCasilleros + ", listaCasillero=" + listaCasillero + ", listaAdmi=" + listaAdmi + '}';
 //    }
->>>>>>> 6c2aedb97e486d644eb74bb95fba0259b1dc165d
+
     
     
     
