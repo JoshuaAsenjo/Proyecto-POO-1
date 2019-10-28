@@ -133,7 +133,8 @@ public class Counter {
         for (int i = 0; i < listaAdmi.size(); i++) {
             AdministradorClientes sacado = listaAdmi.get(i);
             if (sacado.getCliente().getpId()== entrega.getIdRemitente()){
-               
+               int recibidos = sacado.getCantidadRecibidos();
+               sacado.setCantidadRecibidos(recibidos+1);
                sacado.getCasillero().annadirEntregable(entrega);
                //AQUI VA LA FUNCION PARA ENVIAR EL CORREO
                return true;
@@ -141,6 +142,24 @@ public class Counter {
         }   
         return false;
         
+    }
+    
+    public boolean retirarEntregable(int idCliente, int id) {
+        for (int i = 0; i < listaAdmi.size(); i++) {
+            AdministradorClientes sacado = listaAdmi.get(i);
+            if (sacado.getCliente().getpId()== idCliente){
+               for (int j = 0; j<(sacado.getCasillero().getListaEntregables()).size(); i++){
+                   Entregable aRetirar= sacado.getCasillero().getListaEntregables().get(j);
+                   if (aRetirar.getId()== id){
+                       aRetirar.setEstado(false);
+                   }
+               }
+               sacado.getCasillero().annadirEntregable(entrega);
+               //AQUI VA LA FUNCION PARA ENVIAR EL CORREO
+               return true;
+             }
+        }   
+        return false;
     }
 
     @Override

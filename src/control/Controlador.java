@@ -76,6 +76,7 @@ public class Controlador {
     public boolean registrarCliente(int pId, String pNombre, String pCorreo,
             int pTelefono, int pDireccion, boolean esMujer, String fechaDeNacimiento){
        
+        
         Cliente posible = new Cliente(pId,pNombre,pCorreo,pTelefono,pDireccion,esMujer,fechaDeNacimiento);
         for(int i = 0; i < listaClientes.size();i++){
             if(posible.equals(listaClientes.get(i))){

@@ -19,7 +19,6 @@ public class AdministradorClientes {
         this.cliente = cliente;
         this.casillero = casillero;
         this.cantidadRecibidos = cantidadRecibidos;
-        this.nivelCliente = nivelCliente;
     }
 
     public AdministradorClientes() {
