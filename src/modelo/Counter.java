@@ -154,7 +154,7 @@ public class Counter {
                        aRetirar.setEstado(false);
                    }
                }
-               sacado.getCasillero().annadirEntregable(entrega);
+               //sacado.getCasillero().annadirEntregable(entrega);
                //AQUI VA LA FUNCION PARA ENVIAR EL CORREO
                return true;
              }

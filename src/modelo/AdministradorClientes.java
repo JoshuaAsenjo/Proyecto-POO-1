@@ -13,9 +13,9 @@ public class AdministradorClientes {
     private Cliente cliente;
     private Casillero casillero;
     private int cantidadRecibidos;
-    private NivelCliente nivelCliente;
+    //private NivelCliente nivelCliente;
 
-    public AdministradorClientes(Cliente cliente, Casillero casillero, int cantidadRecibidos, NivelCliente nivelCliente) {
+    public AdministradorClientes(Cliente cliente, Casillero casillero, int cantidadRecibidos) {
         this.cliente = cliente;
         this.casillero = casillero;
         this.cantidadRecibidos = cantidadRecibidos;
@@ -47,14 +47,7 @@ public class AdministradorClientes {
     public void setCantidadRecibidos(int cantidadRecibidos) {
         this.cantidadRecibidos = cantidadRecibidos;
     }
-
-    public NivelCliente getNivelCliente() {
-        return nivelCliente;
-    }
-
-    public void setNivelCliente(NivelCliente nivelCliente) {
-        this.nivelCliente = nivelCliente;
-    }
+ 
 
     
     
@@ -63,7 +56,7 @@ public class AdministradorClientes {
         return "AdministradorClientes{" + "cliente=" 
                 + cliente + ", casillero=" 
                 + casillero + ", cantidadRecibidos=" 
-                + cantidadRecibidos + ", nivelCliente=" + nivelCliente + '}';
+                + cantidadRecibidos + '}';
     }
     
     

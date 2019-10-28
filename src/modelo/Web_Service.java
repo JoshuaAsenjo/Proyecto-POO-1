@@ -8,13 +8,6 @@ package modelo;
 import java.io.*;
 import java.net.*;
 import java.util.List;      
-import java.util.Properties;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;    
@@ -75,14 +68,11 @@ public class Web_Service {
             }
             
             input.close();                                       
-            
-            System.out.println(response.toString());
+                        
             CrearXml(String_Repair(response.toString()));
             
             moneda = Moneda();
-            
-            System.out.println("Tipo de moneda: "+moneda);
-            
+                                    
             
         }catch(Exception e){
             System.out.println("Error"+e.getMessage());

@@ -35,9 +35,9 @@ public class CreacionCounter extends javax.swing.JFrame {
         jLabelDireccionCounter = new javax.swing.JLabel();
         jLabelCantidadCasilleros = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
-        jTextFieldCedulaJuridica = new javax.swing.JTextField();
-        jTextFieldDireccion = new javax.swing.JTextField();
-        jTextFieldCantidadCasilleros = new javax.swing.JTextField();
+        txt_CedulaJuridica = new javax.swing.JTextField();
+        txt_Dir = new javax.swing.JTextField();
+        txt_cantidad = new javax.swing.JTextField();
         jButtonCrearCounter = new javax.swing.JButton();
         jLabelIconoCounter = new javax.swing.JLabel();
         jButtonSalirCounter = new javax.swing.JButton();
@@ -45,7 +45,6 @@ public class CreacionCounter extends javax.swing.JFrame {
 
         jTextField1.setText("jTextField1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -83,14 +82,14 @@ public class CreacionCounter extends javax.swing.JFrame {
         });
         getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 180, -1));
 
-        jTextFieldCedulaJuridica.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(jTextFieldCedulaJuridica, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 180, -1));
+        txt_CedulaJuridica.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        getContentPane().add(txt_CedulaJuridica, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 180, -1));
 
-        jTextFieldDireccion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(jTextFieldDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 260, 180, -1));
+        txt_Dir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        getContentPane().add(txt_Dir, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 260, 180, -1));
 
-        jTextFieldCantidadCasilleros.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(jTextFieldCantidadCasilleros, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 320, 180, -1));
+        txt_cantidad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        getContentPane().add(txt_cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 320, 180, -1));
 
         jButtonCrearCounter.setBackground(new java.awt.Color(0, 102, 153));
         jButtonCrearCounter.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -118,7 +117,8 @@ public class CreacionCounter extends javax.swing.JFrame {
         getContentPane().add(jButtonSalirCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(503, 0, 90, 30));
 
         jLabelFondoCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoCounter.jpg"))); // NOI18N
-        getContentPane().add(jLabelFondoCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 591, 456));
+        jLabelFondoCounter.setName(""); // NOI18N
+        getContentPane().add(jLabelFondoCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(-9, -4, 600, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -128,7 +128,8 @@ public class CreacionCounter extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_nombreActionPerformed
 
     private void jButtonSalirCounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirCounterActionPerformed
-        System.exit(0);
+        //System.exit(0);
+        show(false);
     }//GEN-LAST:event_jButtonSalirCounterActionPerformed
 
     private void jButtonCrearCounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearCounterActionPerformed
@@ -183,9 +184,9 @@ public class CreacionCounter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelNombreCounter;
     private javax.swing.JLabel jLabelTituloCounter;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextFieldCantidadCasilleros;
-    private javax.swing.JTextField jTextFieldCedulaJuridica;
-    private javax.swing.JTextField jTextFieldDireccion;
+    private javax.swing.JTextField txt_CedulaJuridica;
+    private javax.swing.JTextField txt_Dir;
+    private javax.swing.JTextField txt_cantidad;
     private javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables
 }
