@@ -8,6 +8,7 @@ package control;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +16,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.*;
 import vista.*;
-
 
 /**
  *
@@ -32,10 +32,8 @@ public class Controlador implements ActionListener{
     public TablaCounters vista_tablaCounter = new TablaCounters();
     
     //Modelos           
-    public Counter model_counter;   
-    public modelo.AdministradorClientes model_AdminClientes;
-    
-    
+    public Counter model_counter;           
+        
     private ArrayList<Cliente> listaClientes;
     private String Venta;
     private String Compra;
@@ -76,13 +74,16 @@ public class Controlador implements ActionListener{
     public void Iniciar(){
         this.vista_counter.setTitle("Creación Counter");
         this.vista_counter.setLocationRelativeTo(null);
+        
         this.vista_counter.jButtonCrearCounter.addActionListener(this);
         this.vista_tablaCounter.jButton1.addActionListener(this);     
         this.p.jButton1.addActionListener(this); 
+        this.vista_interfaz.BtnAdministracionClientes.addActionListener(this);
+        this.vista_AdminClientes.Registrar.addActionListener(this);
     }
     
     public void actionPerformed(ActionEvent e){
-        //Evento para mostrar la vista tabla counter 
+        //Evento de la vista principal boton (Ver Counter) para mostrar la vista tabla counter 
         if(e.getSource() == p.jButton1){
             vista_tablaCounter.show();
         }
@@ -95,20 +96,69 @@ public class Controlador implements ActionListener{
             int cantidad = Integer.parseInt(vista_counter.txt_cantidad.getText());                
 
             model_counter.InsertarCounter(new Counter(nombre, cedula, dir, cantidad,null,null)); 
-
-            vista_interfaz = new Interfaz();
+            
             vista_interfaz.txt_titulo.setText(nombre);
             vista_interfaz.show();
         }
                
         //Evento de la vista tabla counter boton Buscar para mostrar la informacion en la tabla
         if(e.getSource() == vista_tablaCounter.jButton1){
-            Tabla_tablaCounter(vista_tablaCounter.tabla_counter);
-            System.out.println("hoal buscar");
+            Tabla_tablaCounter(vista_tablaCounter.tabla_counter);            
         }
         
-        
+        //Evento de vista Interfaz, boton Administrador de clientes, muestra vista vista_AdminClientes
+        if(e.getSource() == vista_interfaz.BtnAdministracionClientes){
+            vista_AdminClientes.show();
+        }
+        //Eventos de la vista Administrador clientes
+        //Evento # 1 - RegistrarCliente
+        if(e.getSource() == vista_AdminClientes.Registrar){
+            int Cedula = Integer.parseInt(vista_AdminClientes.txt_cedula.getText());
+            String Nombre = vista_AdminClientes.txt_nombre.getText();
+            String C1 = vista_AdminClientes.txt_correo.getText();
+            String C2 = vista_AdminClientes.txt_tipoCorreo.getSelectedItem().toString();
+            String Correo = (C1+""+C2);
+            String Telefono = vista_AdminClientes.txt_telefono.getText();
+            String Direccion = vista_AdminClientes.txt_direccion.getText();
+            String Sexo = vista_AdminClientes.txt_sexo.getSelectedItem().toString();            
+            Date Fecha = vista_AdminClientes.txt_fecha.getDate();            
+             
+            boolean sexo_boolean;
+            if(Sexo.equalsIgnoreCase("Hombre"))
+                sexo_boolean = true;
+            else
+                sexo_boolean = false;
+            
+            
+            Cliente cliente = new Cliente(Cedula, Nombre, Correo, Telefono, Direccion, sexo_boolean, Fecha);
+            Casillero casillero = new Casillero(1000, true);
+            modelo.AdministradorClientes model_AdminClientes = new modelo.AdministradorClientes();
+            
+            model_AdminClientes.Insertar(new modelo.AdministradorClientes(cliente, casillero, 0, 0));
+            
+            for(int i = 0; i<model_counter.lista_counter.size();i++){
+                String Titulo_interfaz = vista_interfaz.txt_titulo.getText();
+                if(model_counter.lista_counter.get(i).getNombre().equalsIgnoreCase(Titulo_interfaz)){
+                    model_counter.lista_counter.get(i).setListaAdmi(model_AdminClientes.Lista_AdminClientes);
+                }
+            }
+            
+            //mostrar los datos clientes en la tabla
+            
+                                    
+        }                                
     }        
+    
+    //Metodo para llenar la tabla de la vista Administrar clientes
+    public void Tabla_AdminClientes(JTable table){
+        ArrayList<Cliente> cl = new ArrayList<Cliente>();
+        for(int i = 0; i<model_counter.lista_counter.size();i++){
+                String Titulo_interfaz = vista_interfaz.txt_titulo.getText();
+                if(model_counter.lista_counter.get(i).getNombre().equalsIgnoreCase(Titulo_interfaz)){
+                    cl.add(model_counter.lista_counter.get(i).getListaAdmi().get(i).getCliente());
+                }
+            }
+    }
     
     //Metodo para llenar la tabla de la vista Tablas_Counters
     public void Tabla_tablaCounter(JTable table){
@@ -141,15 +191,6 @@ public class Controlador implements ActionListener{
         
     }
     
-    public void Iniciar_Mostrar_AdminClientes(){
-        
-        model_AdminClientes = new modelo.AdministradorClientes();
-        this.vista_AdminClientes = new vista.AdministradorClientes();
-        this.vista_AdminClientes.Registrar.addActionListener(this);
-        vista_AdminClientes.show();
-        
-        
-    }
     /*
     *Este metodo registra un cliente en el programa
     *@param pId: Identificacion del cliente

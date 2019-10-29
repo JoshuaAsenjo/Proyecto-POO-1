@@ -5,15 +5,14 @@
  */
 package modelo;
 
-/**
- *
- * @author joshu
- */
+import java.util.*;
 public class AdministradorClientes {
     private Cliente cliente;
     private Casillero casillero;
     private int cantidadRecibidos;
     private int cantidadPorRetirar;
+    
+    public ArrayList<AdministradorClientes> Lista_AdminClientes = new ArrayList<AdministradorClientes>();
 
 
     public AdministradorClientes(Cliente cliente, Casillero casillero, int cantidadRecibidos, int cantidadPorRetirar) {
@@ -24,6 +23,11 @@ public class AdministradorClientes {
     }
 
     public AdministradorClientes() {
+        
+    }
+    
+    public void Insertar(AdministradorClientes a){
+        Lista_AdminClientes.add(a);
     }
 
     public Cliente getCliente() {

@@ -6,11 +6,12 @@
 package vista;
 
 import java.util.*;
+import javax.swing.JOptionPane;
 import modelo.*;
 
 public class AdministradorClientes extends javax.swing.JFrame {
 
-    ArrayList<modelo.AdministradorClientes> lista_admin = new ArrayList<modelo.AdministradorClientes>();
+    public String buscar = "";
     
     public AdministradorClientes() {
         initComponents();
@@ -34,6 +35,7 @@ public class AdministradorClientes extends javax.swing.JFrame {
         Buscar = new javax.swing.JButton();
         txt_cedula = new javax.swing.JTextField();
         txt_fecha = new com.toedter.calendar.JDateChooser();
+        Actualizar = new javax.swing.JButton();
         Modificar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
         txt_tipoCorreo = new javax.swing.JComboBox<>();
@@ -49,7 +51,6 @@ public class AdministradorClientes extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         FondoClientes = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Registrar.setBackground(new java.awt.Color(0, 102, 153));
@@ -77,7 +78,12 @@ public class AdministradorClientes extends javax.swing.JFrame {
         Buscar.setBackground(new java.awt.Color(0, 102, 153));
         Buscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Buscar.setText("Buscar");
-        getContentPane().add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 120, 40));
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 120, 40));
 
         txt_cedula.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         getContentPane().add(txt_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 170, -1));
@@ -86,15 +92,20 @@ public class AdministradorClientes extends javax.swing.JFrame {
         txt_fecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         getContentPane().add(txt_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 170, -1));
 
+        Actualizar.setBackground(new java.awt.Color(0, 102, 153));
+        Actualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Actualizar.setText("Actualizar tabla");
+        getContentPane().add(Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 390, 140, 40));
+
         Modificar.setBackground(new java.awt.Color(0, 102, 153));
         Modificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Modificar.setText("Modificar");
-        getContentPane().add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 390, 140, 40));
+        getContentPane().add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 390, 140, 40));
 
         Eliminar.setBackground(new java.awt.Color(0, 102, 153));
         Eliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Eliminar.setText("Eliminar");
-        getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 390, 120, 40));
+        getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 390, 120, 40));
 
         txt_tipoCorreo.setBackground(new java.awt.Color(0, 102, 153));
         txt_tipoCorreo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -174,6 +185,10 @@ public class AdministradorClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_RegistrarActionPerformed
 
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        buscar = JOptionPane.showInputDialog(null,"ID Cliente");
+    }//GEN-LAST:event_BuscarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -210,6 +225,7 @@ public class AdministradorClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton Actualizar;
     public javax.swing.JButton Buscar;
     public javax.swing.JButton Eliminar;
     private javax.swing.JLabel FondoClientes;
@@ -224,13 +240,13 @@ public class AdministradorClientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txt_cedula;
-    private javax.swing.JTextField txt_correo;
-    private javax.swing.JTextField txt_direccion;
-    private com.toedter.calendar.JDateChooser txt_fecha;
-    private javax.swing.JTextField txt_nombre;
-    private javax.swing.JComboBox<String> txt_sexo;
-    private javax.swing.JTextField txt_telefono;
-    private javax.swing.JComboBox<String> txt_tipoCorreo;
+    public javax.swing.JTextField txt_cedula;
+    public javax.swing.JTextField txt_correo;
+    public javax.swing.JTextField txt_direccion;
+    public com.toedter.calendar.JDateChooser txt_fecha;
+    public javax.swing.JTextField txt_nombre;
+    public javax.swing.JComboBox<String> txt_sexo;
+    public javax.swing.JTextField txt_telefono;
+    public javax.swing.JComboBox<String> txt_tipoCorreo;
     // End of variables declaration//GEN-END:variables
 }

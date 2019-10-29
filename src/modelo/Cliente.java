@@ -120,6 +120,10 @@ public class Cliente {
             return false;
         }
     }
+    
+    public String toString(){
+        return "Cliente= "+pNombre+" "+pCorreo+" "+pTelefono;
+    }
 
 
     

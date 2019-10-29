@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author joshu
  */
-class Casillero {
+public class Casillero {
     private int numero;
     private boolean estado;
     private ArrayList<Entregable> listaEntregables;
@@ -22,6 +22,14 @@ class Casillero {
         this.estado = estado;
         this.listaEntregables = listaEntregables;
     }
+
+    //false = libre || true = ocupado
+    public Casillero(int numero, boolean estado) {
+        this.numero = numero;
+        this.estado = estado;        
+    }
+    
+    
 
     public Casillero() {
     }

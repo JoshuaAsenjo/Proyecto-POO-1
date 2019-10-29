@@ -163,13 +163,11 @@ public class Interfaz extends javax.swing.JFrame {
     private void CompraVentaDolarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompraVentaDolarActionPerformed
         Dolar abrir= new Dolar();
         abrir.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_CompraVentaDolarActionPerformed
 
     private void BtnAdministracionClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdministracionClientesActionPerformed
-        AdministradorClientes abrir= new AdministradorClientes();
-        abrir.setVisible(true);
-        this.setVisible(false);
+              
     }//GEN-LAST:event_BtnAdministracionClientesActionPerformed
 
     private void BtnRetiroArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRetiroArticulosActionPerformed
@@ -220,10 +218,10 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAdministracionClientes;
-    private javax.swing.JButton BtnAdministracionEntregables;
-    private javax.swing.JButton BtnRecepcionArticulos;
-    private javax.swing.JButton BtnRetiroArticulos;
+    public javax.swing.JButton BtnAdministracionClientes;
+    public javax.swing.JButton BtnAdministracionEntregables;
+    public javax.swing.JButton BtnRecepcionArticulos;
+    public javax.swing.JButton BtnRetiroArticulos;
     private javax.swing.JMenuItem CompraVentaDolar;
     private javax.swing.JScrollPane NombreCounter;
     private javax.swing.JMenuItem ResumenContable;
