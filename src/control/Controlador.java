@@ -9,9 +9,13 @@ import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.*;
@@ -32,7 +36,8 @@ public class Controlador implements ActionListener{
     public TablaCounters vista_tablaCounter = new TablaCounters();
     
     //Modelos           
-    public Counter model_counter;           
+    public Counter model_counter;
+    public modelo.AdministradorClientes model_AdminClientes = new modelo.AdministradorClientes();    
         
     private ArrayList<Cliente> listaClientes;
     private String Venta;
@@ -80,6 +85,10 @@ public class Controlador implements ActionListener{
         this.p.jButton1.addActionListener(this); 
         this.vista_interfaz.BtnAdministracionClientes.addActionListener(this);
         this.vista_AdminClientes.Registrar.addActionListener(this);
+        this.vista_AdminClientes.Buscar.addActionListener(this);
+        this.vista_AdminClientes.Actualizar.addActionListener(this);
+        this.vista_AdminClientes.Eliminar.addActionListener(this);
+        this.vista_AdminClientes.Modificar.addActionListener(this);
     }
     
     public void actionPerformed(ActionEvent e){
@@ -94,11 +103,28 @@ public class Controlador implements ActionListener{
             int cedula = Integer.parseInt(vista_counter.txt_CedulaJuridica.getText());
             String dir = vista_counter.txt_Dir.getText();
             int cantidad = Integer.parseInt(vista_counter.txt_cantidad.getText());                
-
-            model_counter.InsertarCounter(new Counter(nombre, cedula, dir, cantidad,null,null)); 
+            
+            Date date1 = null;
+            try {
+                
+               date1=new SimpleDateFormat("dd/MMM/yyyy").parse("31/oct/1998");
+            } catch (ParseException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        
+            Casillero casillero = new Casillero(1000, true);
+             
+            Cliente cliente = new Cliente(305110632, "Brandon", "bsandovalmora@gmail.com", "88888888", "Tejar", true, date1);
+            
+            model_AdminClientes.Insertar(new modelo.AdministradorClientes(cliente, casillero, 0, 0));
+            
+            model_counter.InsertarCounter(new Counter(nombre, cedula, dir, cantidad,model_AdminClientes.TodosCasilleros(),model_AdminClientes.Lista_AdminClientes));                                     
             
             vista_interfaz.txt_titulo.setText(nombre);
-            vista_interfaz.show();
+            vista_interfaz.txt_titulo_id.setText(String.valueOf(cedula));
+            vista_interfaz.show();                        
+            
         }
                
         //Evento de la vista tabla counter boton Buscar para mostrar la informacion en la tabla
@@ -113,6 +139,42 @@ public class Controlador implements ActionListener{
         //Eventos de la vista Administrador clientes
         //Evento # 1 - RegistrarCliente
         if(e.getSource() == vista_AdminClientes.Registrar){
+            
+            RegistarCliente();
+            
+            //mostrar los datos clientes en la tabla
+            Tabla_AdminClientes(vista_AdminClientes.jTable1,0);
+                                    
+        }          
+        //Evento #2 buscar por id_cliente
+        if(e.getSource() == vista_AdminClientes.Buscar){
+            //int id_cliente = Integer.parseInt(vista_AdminClientes.txt_cedula.getText());
+            String id_cliente = JOptionPane.showInputDialog(null,"ID Cliente");
+            Tabla_AdminClientes(vista_AdminClientes.jTable1,Integer.valueOf(id_cliente));
+        }
+        
+        //Evento #3 Actualizar tabla
+        if(e.getSource() == vista_AdminClientes.Actualizar){
+            Tabla_AdminClientes(vista_AdminClientes.jTable1, 0);
+        }
+        
+        //Evento #4 Eliminar cliente por id solo seleccionando la fila de tabla vista Administrador clientes
+        if(e.getSource() == vista_AdminClientes.Eliminar){
+            Eliminar();    
+            Tabla_AdminClientes(vista_AdminClientes.jTable1, 0);
+        }
+        
+        //Evento #5 Modificar cliente por id solo seleccionando la fila de tabla vista Administrador clientes
+        if(e.getSource() == vista_AdminClientes.Modificar){
+            Modificar();
+            Tabla_AdminClientes(vista_AdminClientes.jTable1, 0);
+        }
+    }
+    
+    public void Modificar(){
+        if(vista_AdminClientes.txt_cedula.getText().equalsIgnoreCase("") || vista_AdminClientes.txt_correo.getText().equalsIgnoreCase("") || vista_AdminClientes.txt_direccion.getText().equalsIgnoreCase("") || vista_AdminClientes.txt_nombre.getText().equalsIgnoreCase("") || vista_AdminClientes.txt_telefono.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Error campos vaciós");
+        }else{
             int Cedula = Integer.parseInt(vista_AdminClientes.txt_cedula.getText());
             String Nombre = vista_AdminClientes.txt_nombre.getText();
             String C1 = vista_AdminClientes.txt_correo.getText();
@@ -129,36 +191,112 @@ public class Controlador implements ActionListener{
             else
                 sexo_boolean = false;
             
+            //metodo modificar
+            model_counter.Modificar(Cedula, Nombre, Correo, Telefono, Direccion, Fecha, sexo_boolean, Integer.parseInt(vista_interfaz.txt_titulo_id.getText()));
             
+            vista_AdminClientes.Modificar.setEnabled(false);
+            
+        }
+    }    
+    //Metodo eliminar cliente
+    public void Eliminar(){
+        int id_cliente = Integer.parseInt(vista_AdminClientes.SelectFila);        
+        int id_counter = Integer.parseInt(vista_interfaz.txt_titulo_id.getText());
+        model_counter.Eliminar(id_cliente, id_counter);
+        
+        vista_AdminClientes.Eliminar.setEnabled(false);
+    }
+    
+    //Metodo para llenar la tabla de la vista Administrar clientes
+    public void Tabla_AdminClientes(JTable table,int id_cliente){
+        ArrayList<Cliente> cl = model_counter.ObtenerClientes(Integer.parseInt(vista_interfaz.txt_titulo_id.getText()),id_cliente);
+        ArrayList<Casillero> ca = model_counter.ObtenerCasilleros(Integer.parseInt(vista_interfaz.txt_titulo_id.getText()),id_cliente);
+        String filas [] [] = new String[cl.size()][8];        
+        for(int i = 0;i<cl.size();i++){
+            filas[i][0] = String.valueOf(cl.get(i).getpId());
+            filas[i][1] = cl.get(i).getpNombre();
+            filas[i][2] = cl.get(i).getpCorreo();
+            filas[i][3] = String.valueOf(cl.get(i).getpTelefono());
+            filas[i][4] = cl.get(i).getpDireccion();            
+            if(cl.get(i).getpSexo() == true)
+                filas[i][5] = "Hombre";
+            else
+                filas[i][5] = "Mujer";
+            
+            Date date = cl.get(i).getFechaNacimiento();  
+            DateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");  
+            String strDate = dateFormat.format(date); 
+            
+            filas[i][6] = strDate;
+            filas[i][7] = String.valueOf(ca.get(i).getNumero());
+        }
+        
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            filas,
+            new String [] {
+                "Cédula", "Nombre", "Correo", "Teléfono", "Dirección", "Sexo", "Fecha Nacimiento", " # Casillero"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        
+    }
+    
+    //Metodo para registrar cliente
+    public void RegistarCliente(){
+        
+        if(vista_AdminClientes.txt_cedula.getText().equalsIgnoreCase("") || vista_AdminClientes.txt_correo.getText().equalsIgnoreCase("") || vista_AdminClientes.txt_direccion.getText().equalsIgnoreCase("") || vista_AdminClientes.txt_nombre.getText().equalsIgnoreCase("") || vista_AdminClientes.txt_telefono.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Error campos vaciós");
+        }else{
+            int Cedula = Integer.parseInt(vista_AdminClientes.txt_cedula.getText());
+            String Nombre = vista_AdminClientes.txt_nombre.getText();
+            String C1 = vista_AdminClientes.txt_correo.getText();
+            String C2 = vista_AdminClientes.txt_tipoCorreo.getSelectedItem().toString();
+            String Correo = (C1+""+C2);
+            String Telefono = vista_AdminClientes.txt_telefono.getText();
+            String Direccion = vista_AdminClientes.txt_direccion.getText();
+            String Sexo = vista_AdminClientes.txt_sexo.getSelectedItem().toString();            
+            Date Fecha = vista_AdminClientes.txt_fecha.getDate();            
+             
+            boolean sexo_boolean;
+            if(Sexo.equalsIgnoreCase("Hombre"))
+                sexo_boolean = true;
+            else
+                sexo_boolean = false;
+                        
             Cliente cliente = new Cliente(Cedula, Nombre, Correo, Telefono, Direccion, sexo_boolean, Fecha);
-            Casillero casillero = new Casillero(1000, true);
-            modelo.AdministradorClientes model_AdminClientes = new modelo.AdministradorClientes();
+            
+            int id_cas = model_counter.AsignarCasillero(Integer.parseInt(vista_interfaz.txt_titulo_id.getText()));
+            Casillero casillero = new Casillero(id_cas, true);            
             
             model_AdminClientes.Insertar(new modelo.AdministradorClientes(cliente, casillero, 0, 0));
             
-            for(int i = 0; i<model_counter.lista_counter.size();i++){
-                String Titulo_interfaz = vista_interfaz.txt_titulo.getText();
-                if(model_counter.lista_counter.get(i).getNombre().equalsIgnoreCase(Titulo_interfaz)){
-                    model_counter.lista_counter.get(i).setListaAdmi(model_AdminClientes.Lista_AdminClientes);
-                }
-            }
+            int Titulo_interfaz_id = Integer.parseInt(vista_interfaz.txt_titulo_id.getText());
             
-            //mostrar los datos clientes en la tabla
+            model_counter.annadir_AdmiCliente_Casilero(Titulo_interfaz_id, model_AdminClientes);
             
-                                    
-        }                                
-    }        
-    
-    //Metodo para llenar la tabla de la vista Administrar clientes
-    public void Tabla_AdminClientes(JTable table){
-        ArrayList<Cliente> cl = new ArrayList<Cliente>();
-        for(int i = 0; i<model_counter.lista_counter.size();i++){
-                String Titulo_interfaz = vista_interfaz.txt_titulo.getText();
-                if(model_counter.lista_counter.get(i).getNombre().equalsIgnoreCase(Titulo_interfaz)){
-                    cl.add(model_counter.lista_counter.get(i).getListaAdmi().get(i).getCliente());
-                }
-            }
+            vista_AdminClientes.txt_cedula.setText("");
+            vista_AdminClientes.txt_correo.setText("");
+            vista_AdminClientes.txt_direccion.setText("");
+            vista_AdminClientes.txt_nombre.setText("");
+            vista_AdminClientes.txt_telefono.setText("");
+            
+            //se le avisa al usuario del numero de casillero            
+            JOptionPane.showMessageDialog(null, "Datos correctos \n "+Nombre+" \n "+Cedula+"\n  Numero de casillero: "+id_cas);
+            
+        }
+        
+        
+            
+                      
     }
+    
     
     //Metodo para llenar la tabla de la vista Tablas_Counters
     public void Tabla_tablaCounter(JTable table){

@@ -37,6 +37,8 @@ public class Interfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        NombreCounter1 = new javax.swing.JScrollPane();
+        txt_titulo_id = new javax.swing.JTextArea();
         jButtonSalir = new javax.swing.JButton();
         BtnAdministracionClientes = new javax.swing.JButton();
         BtnRecepcionArticulos = new javax.swing.JButton();
@@ -53,6 +55,20 @@ public class Interfaz extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        NombreCounter1.setBackground(new java.awt.Color(0, 102, 153));
+        NombreCounter1.setBorder(null);
+        NombreCounter1.setForeground(new java.awt.Color(255, 255, 255));
+        NombreCounter1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        txt_titulo_id.setBackground(new java.awt.Color(0, 102, 153));
+        txt_titulo_id.setColumns(20);
+        txt_titulo_id.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
+        txt_titulo_id.setForeground(new java.awt.Color(0, 51, 51));
+        txt_titulo_id.setRows(3);
+        NombreCounter1.setViewportView(txt_titulo_id);
+
+        getContentPane().add(NombreCounter1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 280, 90));
 
         jButtonSalir.setBackground(new java.awt.Color(0, 51, 102));
         jButtonSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -118,10 +134,10 @@ public class Interfaz extends javax.swing.JFrame {
         txt_titulo.setColumns(20);
         txt_titulo.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         txt_titulo.setForeground(new java.awt.Color(0, 51, 51));
-        txt_titulo.setRows(5);
+        txt_titulo.setRows(3);
         NombreCounter.setViewportView(txt_titulo);
 
-        getContentPane().add(NombreCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 280, -1));
+        getContentPane().add(NombreCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, 280, 90));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoCounter.jpg"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 823, 539));
@@ -224,11 +240,13 @@ public class Interfaz extends javax.swing.JFrame {
     public javax.swing.JButton BtnRetiroArticulos;
     private javax.swing.JMenuItem CompraVentaDolar;
     private javax.swing.JScrollPane NombreCounter;
+    private javax.swing.JScrollPane NombreCounter1;
     private javax.swing.JMenuItem ResumenContable;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBarInterfaz;
     public javax.swing.JTextArea txt_titulo;
+    public javax.swing.JTextArea txt_titulo_id;
     // End of variables declaration//GEN-END:variables
 }

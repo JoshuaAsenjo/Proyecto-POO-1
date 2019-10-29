@@ -5,14 +5,19 @@
  */
 package vista;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.*;
 
 public class AdministradorClientes extends javax.swing.JFrame {
-
-    public String buscar = "";
     
+    public String SelectFila;    
+        
     public AdministradorClientes() {
         initComponents();
         
@@ -61,7 +66,7 @@ public class AdministradorClientes extends javax.swing.JFrame {
                 RegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 250, 40));
+        getContentPane().add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 160, 40));
 
         txt_nombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 170, -1));
@@ -83,7 +88,7 @@ public class AdministradorClientes extends javax.swing.JFrame {
                 BuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 120, 40));
+        getContentPane().add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 390, 120, 40));
 
         txt_cedula.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         getContentPane().add(txt_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 170, -1));
@@ -95,17 +100,19 @@ public class AdministradorClientes extends javax.swing.JFrame {
         Actualizar.setBackground(new java.awt.Color(0, 102, 153));
         Actualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Actualizar.setText("Actualizar tabla");
-        getContentPane().add(Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 390, 140, 40));
+        getContentPane().add(Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 390, 140, 40));
 
         Modificar.setBackground(new java.awt.Color(0, 102, 153));
         Modificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Modificar.setText("Modificar");
-        getContentPane().add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 390, 140, 40));
+        Modificar.setEnabled(false);
+        getContentPane().add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 170, 40));
 
         Eliminar.setBackground(new java.awt.Color(0, 102, 153));
         Eliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Eliminar.setText("Eliminar");
-        getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 390, 120, 40));
+        Eliminar.setEnabled(false);
+        getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 390, 120, 40));
 
         txt_tipoCorreo.setBackground(new java.awt.Color(0, 102, 153));
         txt_tipoCorreo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -154,21 +161,26 @@ public class AdministradorClientes extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cédula", "Nombre", "Correo", "Teléfono", "Dirección", "Sexo", "Fecha Nacimiento"
+                "Cédula", "Nombre", "Correo", "Teléfono", "Dirección", "Sexo", "Fecha Nacimiento", " # Casillero"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true
+                false, true, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -182,12 +194,55 @@ public class AdministradorClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
-        // TODO add your handling code here:
+                               
+            
     }//GEN-LAST:event_RegistrarActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        buscar = JOptionPane.showInputDialog(null,"ID Cliente");
+       
     }//GEN-LAST:event_BuscarActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        Eliminar.setEnabled(true);
+        Modificar.setEnabled(true);
+        DefaultTableModel model2 =(DefaultTableModel)jTable1.getModel();
+        int selectedRow = jTable1.getSelectedRow();
+        
+        SelectFila = model2.getValueAt(selectedRow, 0).toString();
+        
+        txt_cedula.setText(SelectFila);
+        txt_nombre.setText(model2.getValueAt(selectedRow, 1).toString());
+        txt_telefono.setText(model2.getValueAt(selectedRow, 3).toString());
+        txt_direccion.setText(model2.getValueAt(selectedRow, 4).toString());
+        txt_sexo.setSelectedItem(model2.getValueAt(selectedRow, 5).toString());
+        try {
+            Date date1=new SimpleDateFormat("dd/MMM/yyyy").parse(model2.getValueAt(selectedRow, 6).toString());
+            txt_fecha.setDate(date1);
+        } catch (ParseException ex) {
+            Logger.getLogger(AdministradorClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                        
+        String string = model2.getValueAt(selectedRow, 2).toString();
+        String[] parts = string.split("@");
+        
+        txt_correo.setText(parts[0]);
+        
+        if(parts[1].equalsIgnoreCase("gmail.com")){             
+            txt_tipoCorreo.setSelectedItem("@gmail.com");            
+        }
+        if(parts[1].equalsIgnoreCase("hotmail.com")){             
+            txt_tipoCorreo.setSelectedItem("@hotmail.com");            
+        }
+        if(parts[1].equalsIgnoreCase("outlook.com")){             
+            txt_tipoCorreo.setSelectedItem("@outlook.com");            
+        }
+        if(parts[1].equalsIgnoreCase("yahoo.com")){             
+            txt_tipoCorreo.setSelectedItem("@yahoo.com");            
+        }
+        
+        //@gmail.com, @hotmail.com, @outlook.com, @yahoo.com
+        
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -239,7 +294,7 @@ public class AdministradorClientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     public javax.swing.JTextField txt_cedula;
     public javax.swing.JTextField txt_correo;
     public javax.swing.JTextField txt_direccion;

@@ -12,8 +12,7 @@ public class AdministradorClientes {
     private int cantidadRecibidos;
     private int cantidadPorRetirar;
     
-    public ArrayList<AdministradorClientes> Lista_AdminClientes = new ArrayList<AdministradorClientes>();
-
+    public ArrayList<AdministradorClientes> Lista_AdminClientes = new ArrayList<AdministradorClientes>();    
 
     public AdministradorClientes(Cliente cliente, Casillero casillero, int cantidadRecibidos, int cantidadPorRetirar) {
         this.cliente = cliente;
@@ -24,6 +23,14 @@ public class AdministradorClientes {
 
     public AdministradorClientes() {
         
+    }
+    
+    public ArrayList<Casillero> TodosCasilleros(){
+        ArrayList<Casillero> ca = new ArrayList<Casillero>();
+        for(int i = 0; i<Lista_AdminClientes.size();i++){
+            ca.add(Lista_AdminClientes.get(i).getCasillero());
+        }
+        return ca;
     }
     
     public void Insertar(AdministradorClientes a){

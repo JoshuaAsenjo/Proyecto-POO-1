@@ -5,6 +5,7 @@
  */
 package modelo;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class Counter {
@@ -20,6 +21,7 @@ public class Counter {
     public ArrayList<Counter> lista_counter = new ArrayList<Counter>();
 
     public Counter() {
+        
     }
 
     public Counter(String nombre, int cedulaJuridica, String direccion, int cantCasilleros, ArrayList<Casillero> listaCasillero, ArrayList<AdministradorClientes> listaAdmi) {
@@ -93,25 +95,120 @@ public class Counter {
         this.listaAdmi = listaAdmi;
     }
 
-    public boolean annadirAdmiCliente(AdministradorClientes cliente){
-        for (int i = 0; i < listaAdmi.size(); i++) {
-            AdministradorClientes sacado = listaAdmi.get(i);
-            if (sacado.getCliente().getpId()== cliente.getCliente().getpId() ){
-                System.out.println("Cliente ya esta ingresado");
-                return false;
-            }else if(sacado.getCasillero().getNumero() == cliente.getCasillero().getNumero()){
-                System.out.println("Casillero ya Asignado");
-                return false;
-            }
-        }   
-        listaAdmi.add(cliente);        
-        System.out.println("Su casillero es: "+ cliente.getCasillero().getNumero());
-        return true;
+    public void annadir_AdmiCliente_Casilero(int id, AdministradorClientes AdminClientes){
+        for(int i = 0; i<lista_counter.size();i++){               
+                if(lista_counter.get(i).getCedulaJuridica() == id){                    
+                    lista_counter.get(i).setListaAdmi(AdminClientes.Lista_AdminClientes);                            
+                    lista_counter.get(i).setListaCasillero(AdminClientes.TodosCasilleros());                                                                                                                                             
+               }
+        }
+        
     }
+    
+    public void Eliminar(int id_cliente, int id_counter){
+        for(int i= 0; i < lista_counter.size();i++){
+            if(lista_counter.get(i).getCedulaJuridica() == id_counter){
+                for(int j = 0; j<lista_counter.get(i).listaAdmi.size();j++){
+                    if(lista_counter.get(i).listaAdmi.get(j).getCliente().getpId() == id_cliente){                        
+                        lista_counter.get(i).getListaAdmi().remove(j);
+                        lista_counter.get(i).getListaCasillero().remove(j);                        
+                    }                    
+                }
+            }
+        }
+    }
+    
+    public void Modificar(int id_cliente, String Nombre,String Correo,String Telefono,String Direccion,Date Fecha,boolean sexo_boolean, int id_counter){
+        for(int i= 0; i < lista_counter.size();i++){
+            if(lista_counter.get(i).getCedulaJuridica() == id_counter){
+                for(int j = 0; j<lista_counter.get(i).listaAdmi.size();j++){
+                    if(lista_counter.get(i).listaAdmi.get(j).getCliente().getpId() == id_cliente){                        
+                       lista_counter.get(i).listaAdmi.get(j).getCliente().setpNombre(Nombre);
+                       lista_counter.get(i).listaAdmi.get(j).getCliente().setpCorreo(Correo);
+                       lista_counter.get(i).listaAdmi.get(j).getCliente().setpTelefono(Telefono); 
+                       lista_counter.get(i).listaAdmi.get(j).getCliente().setpDireccion(Direccion); 
+                       lista_counter.get(i).listaAdmi.get(j).getCliente().setpSexo(sexo_boolean); 
+                       lista_counter.get(i).listaAdmi.get(j).getCliente().setFechaDeNacimiento(Fecha);                        
+                    }                    
+                }
+            }
+        }
+    }
+    
+    public int AsignarCasillero(int id_counter){
+        int cas = 1000;
+        
+        for(int i= 0; i < lista_counter.size();i++){  
+            if(lista_counter.get(i).getCedulaJuridica() == id_counter){                                              
+                for(int j = 0; j<lista_counter.get(i).listaAdmi.size();j++){                                            
+                        cas = (lista_counter.get(i).listaAdmi.get(j).getCasillero().getNumero()) + 1;                        
+                }
+                
+            }
+        } 
+        return cas;
+    }
+      
+    
+    public ArrayList<Cliente> ObtenerClientes(int id_counter,int id_cliente){
+        ArrayList<Cliente> cl = new ArrayList<Cliente>();
+        
+        for(int i = 0; i<lista_counter.size();i++){               
+                if(lista_counter.get(i).getCedulaJuridica() == id_counter){
+                   
+                    ArrayList<AdministradorClientes> admin = lista_counter.get(i).getListaAdmi();
+                    
+                    if(id_cliente == 0){
+                        for(int j = 0; j <admin.size();j++){
+                            cl.add(admin.get(j).getCliente());                        
+                        }
+                    }else{
+                        for(int j = 0; j <admin.size();j++){
+                            if(admin.get(j).getCliente().getpId() == id_cliente){
+                                cl.add(admin.get(j).getCliente());
+                                break;
+                            }                                                    
+                        }
+                    }                                        
+               }
+        }        
+        return cl;
+    }
+    
+    
+    public ArrayList<Casillero> ObtenerCasilleros(int id_counter,int id_cliente){
+        ArrayList<Casillero> cl = new ArrayList<Casillero>();
+        
+        for(int i = 0; i<lista_counter.size();i++){               
+                if(lista_counter.get(i).getCedulaJuridica() == id_counter){
+                   
+                    ArrayList<AdministradorClientes> admin = lista_counter.get(i).getListaAdmi();
+                    
+                    if(id_cliente == 0){
+                        for(int j = 0; j <admin.size();j++){
+                            cl.add(admin.get(j).getCasillero());                        
+                        }
+                    }else{
+                        for(int j = 0; j <admin.size();j++){
+                            if(admin.get(j).getCliente().getpId() == id_cliente){
+                                cl.add(admin.get(j).getCasillero());
+                                break;
+                            }                                                    
+                        }
+                    }                                        
+               }
+        }        
+        return cl;
+    }
+    
+    
  
-    public AdministradorClientes buscarCliente(int id){
-       
-      for (int i = 0; i < listaAdmi.size(); i++) {
+    public AdministradorClientes buscarCliente(int id, String id_counter){                   
+           for (int i = 0; i < lista_counter.size(); i++) {
+               
+               if(lista_counter.get(i).getNombre().equalsIgnoreCase(id_counter)){
+                   
+               }
             AdministradorClientes buscado = listaAdmi.get(i);
             if (buscado.getCliente().getpId() == id){
                 
@@ -119,8 +216,10 @@ public class Counter {
                 System.out.println(buscado);
                 return buscado;
             }
+       }
+      
                
-        }
+        
                
             System.out.println("No se encontro cliente solicitado");
             return null;    
