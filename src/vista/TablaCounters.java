@@ -13,9 +13,9 @@ public class TablaCounters extends javax.swing.JFrame {
 
     ArrayList<Counter> lista_counter = new ArrayList<Counter>();
     
-    public TablaCounters(ArrayList<Counter> lista_counter) {
+    public TablaCounters() {
         initComponents();
-        this.lista_counter = lista_counter;
+        
     }
 
     /**
@@ -75,7 +75,7 @@ public class TablaCounters extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Mostrar();
+        //Mostrar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -108,7 +108,7 @@ public class TablaCounters extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TablaCounters(null).setVisible(true);
+                new TablaCounters().setVisible(true);
             }
         });
     }

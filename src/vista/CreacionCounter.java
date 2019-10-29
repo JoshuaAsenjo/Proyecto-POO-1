@@ -128,8 +128,6 @@ public class CreacionCounter extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalirCounterActionPerformed
 
     private void jButtonCrearCounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearCounterActionPerformed
-        Interfaz abrir= new Interfaz(txt_nombre.getText());
-        abrir.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonCrearCounterActionPerformed
 

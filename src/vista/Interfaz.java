@@ -7,20 +7,19 @@ package vista;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+
 /**
  *
  * @author joshu
  */
 public class Interfaz extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Interfaz
-     */
-    public Interfaz(String titulo) {
+    
+    public Interfaz() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(823);
-        txt_titulo.setText(titulo);
+        
     }
     
     @Override
@@ -215,7 +214,7 @@ public class Interfaz extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Interfaz(null).setVisible(true);
+                new Interfaz().setVisible(true);
             }
         });
     }
@@ -232,6 +231,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBarInterfaz;
-    private javax.swing.JTextArea txt_titulo;
+    public javax.swing.JTextArea txt_titulo;
     // End of variables declaration//GEN-END:variables
 }

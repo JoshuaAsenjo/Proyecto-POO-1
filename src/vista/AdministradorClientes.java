@@ -5,17 +5,16 @@
  */
 package vista;
 
-/**
- *
- * @author joshu
- */
+import java.util.*;
+import modelo.*;
+
 public class AdministradorClientes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AdministradorClientes
-     */
+    ArrayList<modelo.AdministradorClientes> lista_admin = new ArrayList<modelo.AdministradorClientes>();
+    
     public AdministradorClientes() {
         initComponents();
+        
     }
 
     /**
@@ -28,17 +27,17 @@ public class AdministradorClientes extends javax.swing.JFrame {
     private void initComponents() {
 
         Registrar = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txt_nombre = new javax.swing.JTextField();
+        txt_correo = new javax.swing.JTextField();
+        txt_telefono = new javax.swing.JTextField();
+        txt_direccion = new javax.swing.JTextField();
         Buscar = new javax.swing.JButton();
-        jTextField7 = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        txt_cedula = new javax.swing.JTextField();
+        txt_fecha = new com.toedter.calendar.JDateChooser();
         Modificar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        txt_tipoCorreo = new javax.swing.JComboBox<>();
+        txt_sexo = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -63,29 +62,29 @@ public class AdministradorClientes extends javax.swing.JFrame {
         });
         getContentPane().add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 250, 40));
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 170, -1));
+        txt_nombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 170, -1));
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 120, -1));
+        txt_correo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        getContentPane().add(txt_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 120, -1));
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 170, -1));
+        txt_telefono.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        getContentPane().add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 170, -1));
 
-        jTextField6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 170, -1));
+        txt_direccion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        getContentPane().add(txt_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 170, -1));
 
         Buscar.setBackground(new java.awt.Color(0, 102, 153));
         Buscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Buscar.setText("Buscar");
         getContentPane().add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 120, 40));
 
-        jTextField7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 170, -1));
+        txt_cedula.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        getContentPane().add(txt_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 170, -1));
 
-        jDateChooser1.setDateFormatString("dd/MMM/yyyy");
-        jDateChooser1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 170, -1));
+        txt_fecha.setDateFormatString("dd/MMM/yyyy");
+        txt_fecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        getContentPane().add(txt_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 170, -1));
 
         Modificar.setBackground(new java.awt.Color(0, 102, 153));
         Modificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -97,15 +96,15 @@ public class AdministradorClientes extends javax.swing.JFrame {
         Eliminar.setText("Eliminar");
         getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 390, 120, 40));
 
-        jComboBox1.setBackground(new java.awt.Color(0, 102, 153));
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "@gmail.com", "@hotmail.com", "@outlook.com", "@yahoo.com" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 110, -1));
+        txt_tipoCorreo.setBackground(new java.awt.Color(0, 102, 153));
+        txt_tipoCorreo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_tipoCorreo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "@gmail.com", "@hotmail.com", "@outlook.com", "@yahoo.com" }));
+        getContentPane().add(txt_tipoCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 110, -1));
 
-        jComboBox2.setBackground(new java.awt.Color(0, 102, 153));
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mujer", "Hombre" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 170, -1));
+        txt_sexo.setBackground(new java.awt.Color(0, 102, 153));
+        txt_sexo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mujer", "Hombre" }));
+        getContentPane().add(txt_sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 170, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -152,7 +151,15 @@ public class AdministradorClientes extends javax.swing.JFrame {
             new String [] {
                 "Cédula", "Nombre", "Correo", "Teléfono", "Dirección", "Sexo", "Fecha Nacimiento"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 670, 340));
@@ -208,9 +215,6 @@ public class AdministradorClientes extends javax.swing.JFrame {
     private javax.swing.JLabel FondoClientes;
     public javax.swing.JButton Modificar;
     public javax.swing.JButton Registrar;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -220,10 +224,13 @@ public class AdministradorClientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField txt_cedula;
+    private javax.swing.JTextField txt_correo;
+    private javax.swing.JTextField txt_direccion;
+    private com.toedter.calendar.JDateChooser txt_fecha;
+    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JComboBox<String> txt_sexo;
+    private javax.swing.JTextField txt_telefono;
+    private javax.swing.JComboBox<String> txt_tipoCorreo;
     // End of variables declaration//GEN-END:variables
 }

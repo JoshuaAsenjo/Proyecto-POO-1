@@ -11,8 +11,9 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import modelo.*;
-
 import vista.*;
 
 
@@ -23,15 +24,22 @@ import vista.*;
 public class Controlador implements ActionListener{
     private Controlador singlenton;
     
-    //Vista
-    private CreacionCounter vista_counter;
+    //Vistas
+    public Principal p;
+    public CreacionCounter vista_counter; 
+    public vista.AdministradorClientes vista_AdminClientes = new vista.AdministradorClientes(); 
+    public Interfaz vista_interfaz = new Interfaz();
+    public TablaCounters vista_tablaCounter = new TablaCounters();
     
-    //Modelo Counter
-    public Counter model_counter;
+    //Modelos           
+    public Counter model_counter;   
+    public modelo.AdministradorClientes model_AdminClientes;
+    
     
     private ArrayList<Cliente> listaClientes;
     private String Venta;
     private String Compra;
+    
     public Web_Service service = new Web_Service();
     
     /*
@@ -49,7 +57,8 @@ public class Controlador implements ActionListener{
     }
     */
     
-    public Controlador(CreacionCounter vista_counter, Counter model_counter){
+    public Controlador(Principal p,CreacionCounter vista_counter, Counter model_counter){
+        this.p = p;
         this.model_counter = model_counter;
         this.vista_counter = vista_counter;
     }
@@ -68,18 +77,56 @@ public class Controlador implements ActionListener{
         this.vista_counter.setTitle("Creación Counter");
         this.vista_counter.setLocationRelativeTo(null);
         this.vista_counter.jButtonCrearCounter.addActionListener(this);
-        
+        this.vista_tablaCounter.jButton1.addActionListener(this);     
+        this.p.jButton1.addActionListener(this); 
     }
     
     public void actionPerformed(ActionEvent e){
-                        
-        String nombre = vista_counter.txt_nombre.getText();
-        int cedula = Integer.parseInt(vista_counter.txt_CedulaJuridica.getText());
-        String dir = vista_counter.txt_Dir.getText();
-        int cantidad = Integer.parseInt(vista_counter.txt_cantidad.getText());                
+        //Evento para mostrar la vista tabla counter 
+        if(e.getSource() == p.jButton1){
+            vista_tablaCounter.show();
+        }
+        
+        // Vista Creacion, al dar clic al boton CREAR se aplica la accion siguiente
+        if(e.getSource() == vista_counter.jButtonCrearCounter){
+            String nombre = vista_counter.txt_nombre.getText();
+            int cedula = Integer.parseInt(vista_counter.txt_CedulaJuridica.getText());
+            String dir = vista_counter.txt_Dir.getText();
+            int cantidad = Integer.parseInt(vista_counter.txt_cantidad.getText());                
+
+            model_counter.InsertarCounter(new Counter(nombre, cedula, dir, cantidad,null,null)); 
+
+            vista_interfaz = new Interfaz();
+            vista_interfaz.txt_titulo.setText(nombre);
+            vista_interfaz.show();
+        }
                
-        model_counter.InsertarCounter(new Counter(nombre, cedula, dir, cantidad,null,null)); 
-                
+        //Evento de la vista tabla counter boton Buscar para mostrar la informacion en la tabla
+        if(e.getSource() == vista_tablaCounter.jButton1){
+            Tabla_tablaCounter(vista_tablaCounter.tabla_counter);
+            System.out.println("hoal buscar");
+        }
+        
+        
+    }        
+    
+    //Metodo para llenar la tabla de la vista Tablas_Counters
+    public void Tabla_tablaCounter(JTable table){
+        String filas [][] = new String[model_counter.lista_counter.size()][4];
+        
+        for(int i = 0; i < model_counter.lista_counter.size();i++){
+            filas[i][0] = model_counter.lista_counter.get(i).getNombre();
+            filas[i][1] = String.valueOf(model_counter.lista_counter.get(i).getCedulaJuridica());
+            filas[i][2] = model_counter.lista_counter.get(i).getDireccion();
+            filas[i][3] = String.valueOf(model_counter.lista_counter.get(i).getCantCasilleros());
+        }
+        
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            filas,
+            new String [] {
+                "Nombre", "Cédula Juridica", "Dirección", "Casilleros Disponibles"
+            }
+        ));
     }
     
     public ArrayList<Counter> MostrarCounter(){
@@ -89,8 +136,18 @@ public class Controlador implements ActionListener{
     }
     
     public void Inicar_Mostrar_Counter(){
-        TablaCounters t = new TablaCounters(MostrarCounter());
-        t.show();
+        vista_tablaCounter = new TablaCounters();
+        vista_tablaCounter.show();
+        
+    }
+    
+    public void Iniciar_Mostrar_AdminClientes(){
+        
+        model_AdminClientes = new modelo.AdministradorClientes();
+        this.vista_AdminClientes = new vista.AdministradorClientes();
+        this.vista_AdminClientes.Registrar.addActionListener(this);
+        vista_AdminClientes.show();
+        
         
     }
     /*

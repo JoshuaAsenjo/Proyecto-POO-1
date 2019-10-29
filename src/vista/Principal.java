@@ -15,7 +15,7 @@ public class Principal extends javax.swing.JFrame {
     Counter model_counter = new Counter();
     CreacionCounter vista_counter = new CreacionCounter();
     
-    Controlador con = new Controlador(vista_counter, model_counter);
+    Controlador con = new Controlador(this,vista_counter, model_counter);
     
     public Principal() {
         initComponents();
@@ -72,9 +72,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        con.Inicar_Mostrar_Counter();
-        
-        
+                       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -113,7 +111,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
