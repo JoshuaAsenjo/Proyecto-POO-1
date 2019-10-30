@@ -16,11 +16,7 @@ public class AdministradorEntregables {
     private ArrayList<Entregable> listaFechaIngreso;
     private ArrayList<Entregable> listaFechaRetiro;
     private ArrayList<Entregable> listaPorRetirar;
-
-    
-    public void Insertar(Entregable e){
-        listaEntregables.add(e);
-    }
+        
     
     public ArrayList<Entregable> MostrarEntregables(int id_cliente){
         ArrayList<Entregable> buscarCliente = new ArrayList<>();
@@ -31,6 +27,8 @@ public class AdministradorEntregables {
         }
         return buscarCliente;
     }
+    
+    
     
     public AdministradorEntregables(ArrayList<Entregable> listaEntregables) {
         this.listaEntregables = listaEntregables;
@@ -47,23 +45,22 @@ public class AdministradorEntregables {
         this.listaEntregables = listaEntregables;
     }
 
-    public void annadirEntrega(Entregable entrega){
+    public void AnnadirEntrega(Entregable entrega){
         for (int i = 0; i < listaEntregables.size(); i++) {
             Entregable entregables = listaEntregables.get(i);
             if (entregables.getId()== entrega.getId()){
-                System.out.println("No pudo ser ingresado");
+                entrega.setId(entregables.getId() + 1);
              }
         }   
         listaEntregables.add(entrega);
         System.out.println("Ingresado al inventario");
     }
     
-    public ArrayList<Entregable> mostrarFechaIngreso(String fechaIngreso){
+    public ArrayList<Entregable> MostrarFechaIngreso(String fechaIngreso){
         for (int i = 0; i < listaEntregables.size(); i++) {
             Entregable entregables = listaEntregables.get(i);
             if (entregables.getFechaIngreso().equals(fechaIngreso) ){
-                listaFechaIngreso.add(entregables);
-                
+                listaFechaIngreso.add(entregables);                
              }
         }
         ArrayList<Entregable> auxIngreso = listaFechaIngreso;

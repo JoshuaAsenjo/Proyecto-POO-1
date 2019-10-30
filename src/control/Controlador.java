@@ -245,14 +245,15 @@ public class Controlador implements ActionListener{
             revista_catalogo_boolean = false;
         }else{
             revista_catalogo_boolean= true;
-        }
-        
+        }        
         
         Paquete paquete = new Paquete(paquete_fragil_boolean, paquete_empaque_boolean, paquete_electronico_boolean);
         Revista revista = new Revista(nombre_revista, tema_revista, revista_catalogo_boolean);
         Sobre sobre = new Sobre(true, Contenido);
         
+        Entregable entregable = new Entregable(1, true, descripcion, id_Remitente, getDate(), FechaRetiro, peso, sobre, paquete, revista, costo);
         
+        model_Admin_Entre.AnnadirEntrega(entregable);
         
     }
     
