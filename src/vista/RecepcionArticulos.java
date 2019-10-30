@@ -65,9 +65,7 @@ public class RecepcionArticulos extends javax.swing.JFrame {
         txt_fecharetiro = new com.toedter.calendar.JDateChooser();
         label_sobre_2 = new javax.swing.JLabel();
         txt_idremitente = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         txt_peso = new javax.swing.JTextField();
-        txt_costo = new javax.swing.JTextField();
         label_sobre_1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txt_des = new javax.swing.JTextArea();
@@ -165,16 +163,8 @@ public class RecepcionArticulos extends javax.swing.JFrame {
         txt_idremitente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         getContentPane().add(txt_idremitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 140, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Costo");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, -1, -1));
-
         txt_peso.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         getContentPane().add(txt_peso, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 140, -1));
-
-        txt_costo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(txt_costo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 140, -1));
 
         label_sobre_1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         label_sobre_1.setForeground(new java.awt.Color(255, 255, 255));
@@ -385,7 +375,6 @@ public class RecepcionArticulos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField jTextField3;
     private javax.swing.JLabel label_paquete_1;
@@ -398,7 +387,6 @@ public class RecepcionArticulos extends javax.swing.JFrame {
     private javax.swing.JLabel label_sobre_2;
     public javax.swing.JButton registrar;
     public javax.swing.JTextField txt_contenido_sobre;
-    public javax.swing.JTextField txt_costo;
     public javax.swing.JTextArea txt_des;
     public com.toedter.calendar.JDateChooser txt_fecharetiro;
     public javax.swing.JTextField txt_idremitente;

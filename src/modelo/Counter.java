@@ -201,6 +201,20 @@ public class Counter {
         return cl;
     }
     
+    public int ObtenerIDCasilleros(int id_counter,int id_cliente){        
+        int idcasillero = 0;
+        for(int i = 0; i<lista_counter.size();i++){               
+                if(lista_counter.get(i).getCedulaJuridica() == id_counter){                   
+                    ArrayList<AdministradorClientes> admin = lista_counter.get(i).getListaAdmi();                   
+                        for(int j = 0; j <admin.size();j++){
+                            if(admin.get(j).getCliente().getpId() == id_cliente){                                
+                                idcasillero = admin.get(j).getCasillero().getNumero();                                
+                            }                                                    
+                        }                                                           
+               }
+        }        
+        return idcasillero;
+    }
     
  
     public AdministradorClientes buscarCliente(int id, String id_counter){                   

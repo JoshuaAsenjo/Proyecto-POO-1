@@ -11,7 +11,7 @@ package modelo;
  */
 public class Entregable {
     private int id;
-    private TipoEntregable tipo;
+    private String tipo;
     private boolean estado; //F para No entregado V Para entregado
     private String descripcion;
     private String remitente;
@@ -27,7 +27,7 @@ public class Entregable {
     public Entregable() {
     }
 
-    public Entregable(int id, TipoEntregable tipo, boolean estado, String descripcion, String remitente, String fechaIngreso, String fechaRetiro, long peso, Sobre sobre, Paquete paquete, Revista revista, long costoArticulo) {
+    public Entregable(int id, String tipo, boolean estado, String descripcion, String remitente, String fechaIngreso, String fechaRetiro, long peso, Sobre sobre, Paquete paquete, Revista revista, long costoArticulo) {
         this.id = id;
         this.tipo = tipo;
         this.estado = estado;//TRUE SI NO HA SIDO RETIRADO, FALSE SI YA SE RETIRO
@@ -42,8 +42,10 @@ public class Entregable {
         this.costoArticulo = costoArticulo;
     }
     
-    public Entregable(int id, boolean estado, String descripcion, int idRemitente, String fechaIngreso, String fechaRetiro, long peso, Sobre sobre, Paquete paquete, Revista revista, long costoArticulo) {
-        this.id = id;        
+    public Entregable(String remitente,int id,String tipo, boolean estado, String descripcion, int idRemitente, String fechaIngreso, String fechaRetiro, long peso, Sobre sobre, Paquete paquete, Revista revista, long costoArticulo) {
+        this.remitente = remitente;
+        this.id = id;
+        this.tipo = tipo;        
         this.estado = estado;//TRUE SI NO HA SIDO RETIRADO, FALSE SI YA SE RETIRO
         this.descripcion = descripcion;
         this.idRemitente = idRemitente;
@@ -64,11 +66,11 @@ public class Entregable {
         this.id = id;
     }
 
-    public TipoEntregable getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoEntregable tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
@@ -131,49 +133,19 @@ public class Entregable {
     public Sobre getSobre() {
         return sobre;
     }
-
-    public void setSobre(boolean tipoSobre, String contenido) {
-        if (this.tipo == TipoEntregable.Sobre){
-            Sobre sobr= new Sobre(tipoSobre, contenido);
-            this.sobre=sobr;
-        }
-        else{
-            this.sobre = null;
-                    
-        }
-    }
-       
-    
+               
 
     public Paquete getPaquete() {
         return paquete;
     }
 
-    public void setPaquete(boolean fragil,boolean empaque,boolean electro) {    //F Para No Fragil V Para Fragil
-        if (this.tipo == TipoEntregable.Paquete){                               //F Para bolsa V Para Caja 
-            Paquete paque= new Paquete(fragil, empaque, electro);                    //F para No V Para Sí
-            this.paquete=paque;
-        }
-        else{
-            this.paquete = null;
-                    
-        }
-    }
+    
 
     public Revista getRevista() {
         return revista;
     }
 
-    public void setRevista(String nombre, String tema, boolean catalogo) {
-        if (this.tipo == TipoEntregable.Revista){                               //F Para bolsa V Para Caja 
-            Revista revist = new Revista(nombre, tema, catalogo);                    //F para No V Para Sí
-            this.revista= revist;
-        }
-        else{
-            this.paquete = null;
-                    
-        }
-    }
+    
 
     public long getCostoArticulo() {
         return costoArticulo;
@@ -195,10 +167,31 @@ public class Entregable {
                 + ", fechaIngreso=" + fechaIngreso 
                 + ", fechaRetiro=" + fechaRetiro 
                 + ", peso=" + peso 
-                + ", sobre=" + sobre 
-                + ", paquete=" + paquete 
-                + ", revista=" + revista 
+                + ", sobre=" + getSobre() 
+                + ", paquete=" + getPaquete() 
+                + ", revista=" + getRevista() 
                 + ", costoArticulo=" + costoArticulo + '}';
+    }
+
+    /**
+     * @param sobre the sobre to set
+     */
+    public void setSobre(Sobre sobre) {
+        this.sobre = sobre;
+    }
+
+    /**
+     * @param paquete the paquete to set
+     */
+    public void setPaquete(Paquete paquete) {
+        this.paquete = paquete;
+    }
+
+    /**
+     * @param revista the revista to set
+     */
+    public void setRevista(Revista revista) {
+        this.revista = revista;
     }
  
     

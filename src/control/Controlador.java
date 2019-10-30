@@ -195,8 +195,7 @@ public class Controlador implements ActionListener{
         Date date = vista_RecepcionArticulos.txt_fecharetiro.getDate();
         DateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");  
         String FechaRetiro = dateFormat.format(date);
-        long peso = Long.parseLong(vista_RecepcionArticulos.txt_peso.getText());
-        long costo = Long.parseLong(vista_RecepcionArticulos.txt_costo.getText());
+        long peso = Long.parseLong(vista_RecepcionArticulos.txt_peso.getText());        
         
         //Sobre
         String Contenido = vista_RecepcionArticulos.txt_contenido_sobre.getText();
@@ -209,7 +208,7 @@ public class Controlador implements ActionListener{
         String nombre_revista = vista_RecepcionArticulos.txt_revista_nombre.getText();
         String tema_revista = vista_RecepcionArticulos.txt_revista_tema.getSelectedItem().toString();
         String catalogo_revista = vista_RecepcionArticulos.txt_revista_catalogo.getSelectedItem().toString();
-        
+        String tipo_articulo = vista_RecepcionArticulos.txt_tipoarticulo.getSelectedItem().toString();
         boolean tipo= false;
         
         //Aereo, Manila
@@ -251,9 +250,14 @@ public class Controlador implements ActionListener{
         Revista revista = new Revista(nombre_revista, tema_revista, revista_catalogo_boolean);
         Sobre sobre = new Sobre(true, Contenido);
         
-        Entregable entregable = new Entregable(1, true, descripcion, id_Remitente, getDate(), FechaRetiro, peso, sobre, paquete, revista, costo);
+        int id_cliente_casillero = model_counter.ObtenerIDCasilleros(Integer.parseInt(vista_interfaz.txt_titulo_id.getText()), id_Remitente);
+        
+        Entregable entregable = new Entregable(String.valueOf(id_cliente_casillero),1, tipo_articulo, true, descripcion, id_Remitente, getDate(), FechaRetiro, peso, sobre, paquete, revista, costo);
         
         model_Admin_Entre.AnnadirEntrega(entregable);
+        
+        ArrayList<Entregable> en = model_Admin_Entre.MostrarEntregables(id_Remitente);
+        System.out.println(en.toString());
         
     }
     
@@ -333,6 +337,21 @@ public class Controlador implements ActionListener{
         });
         
     }
+    
+//    public int Mostrar(int id_counter, int id_cliente){
+//        ArrayList<Entregable> entregable = model_Admin_Entre.MostrarEntregables(id_cliente);
+//        ArrayList<modelo.AdministradorClientes> admin = model_counter.getListaAdmi();
+//        int idcasillero =
+//        for(int i = 0; i < admin.size();i++){
+//            
+//            for(int j = 0; j < entregable.size();j++){
+//                if(entregable.get(i).getIdRemitente() == admin.get(i).getCliente().getpId()){
+//                    entre
+//                }
+//            }
+//            
+//        }
+//    }
     
     //Metodo para registrar cliente
     public void RegistarCliente(){
