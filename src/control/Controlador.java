@@ -29,6 +29,7 @@ public class Controlador implements ActionListener{
     private Controlador singlenton;
     
     //Vistas
+    public AdministracionEntregables vista_AdmiEntregable = new AdministracionEntregables();
     public Principal p;
     public CreacionCounter vista_counter; 
     public vista.AdministradorClientes vista_AdminClientes = new vista.AdministradorClientes(); 
@@ -94,6 +95,7 @@ public class Controlador implements ActionListener{
         
         this.vista_interfaz.BtnRecepcionArticulos.addActionListener(this);
         this.vista_RecepcionArticulos.registrar.addActionListener(this);
+        //this.vista_AdmiEntregable.btn
     }
     
     public void actionPerformed(ActionEvent e){
