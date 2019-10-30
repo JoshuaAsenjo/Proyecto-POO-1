@@ -41,6 +41,20 @@ public class Entregable {
         this.revista = revista;
         this.costoArticulo = costoArticulo;
     }
+    
+    public Entregable(int id, boolean estado, String descripcion, int idRemitente, String fechaIngreso, String fechaRetiro, long peso, Sobre sobre, Paquete paquete, Revista revista, long costoArticulo) {
+        this.id = id;        
+        this.estado = estado;//TRUE SI NO HA SIDO RETIRADO, FALSE SI YA SE RETIRO
+        this.descripcion = descripcion;
+        this.idRemitente = idRemitente;
+        this.fechaIngreso = fechaIngreso;
+        this.fechaRetiro = fechaRetiro;
+        this.peso = peso;
+        this.sobre = sobre;
+        this.paquete = paquete;
+        this.revista = revista;
+        this.costoArticulo = costoArticulo;
+    }
 
     public int getId() {
         return id;
@@ -168,7 +182,8 @@ public class Entregable {
     public void setCostoArticulo(long costoArticulo) {
         this.costoArticulo = costoArticulo;
     }
-
+    
+    
     @Override
     public String toString() {
         return "Entregable{" 

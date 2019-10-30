@@ -34,10 +34,12 @@ public class Controlador implements ActionListener{
     public vista.AdministradorClientes vista_AdminClientes = new vista.AdministradorClientes(); 
     public Interfaz vista_interfaz = new Interfaz();
     public TablaCounters vista_tablaCounter = new TablaCounters();
+    public RecepcionArticulos vista_RecepcionArticulos = new RecepcionArticulos();
     
     //Modelos           
     public Counter model_counter;
-    public modelo.AdministradorClientes model_AdminClientes = new modelo.AdministradorClientes();    
+    public modelo.AdministradorClientes model_AdminClientes = new modelo.AdministradorClientes();   
+    public AdministradorEntregables model_Admin_Entre = new AdministradorEntregables();
         
     private ArrayList<Cliente> listaClientes;
     private String Venta;
@@ -89,6 +91,9 @@ public class Controlador implements ActionListener{
         this.vista_AdminClientes.Actualizar.addActionListener(this);
         this.vista_AdminClientes.Eliminar.addActionListener(this);
         this.vista_AdminClientes.Modificar.addActionListener(this);
+        
+        this.vista_interfaz.BtnRecepcionArticulos.addActionListener(this);
+        this.vista_RecepcionArticulos.registrar.addActionListener(this);
     }
     
     public void actionPerformed(ActionEvent e){
@@ -169,6 +174,86 @@ public class Controlador implements ActionListener{
             Modificar();
             Tabla_AdminClientes(vista_AdminClientes.jTable1, 0);
         }
+        //Fin de eventos de la vista Administrador de clientes
+        
+        //Eventos de la vista Recepcion de articulos
+        //Mostrar formulario recepcion de articulos
+        if(e.getSource() == vista_interfaz.BtnRecepcionArticulos){
+            vista_RecepcionArticulos.show();
+        }
+        
+        //Evento #1 Registro de articulo recepcion de articulos
+        if(e.getSource() == vista_RecepcionArticulos.registrar){
+            Agregar_Articulo();
+        }
+        
+    }
+    
+    public void Agregar_Articulo(){
+        String descripcion = vista_RecepcionArticulos.txt_des.getText();
+        int id_Remitente = Integer.parseInt(vista_RecepcionArticulos.txt_idremitente.getText());
+        Date date = vista_RecepcionArticulos.txt_fecharetiro.getDate();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");  
+        String FechaRetiro = dateFormat.format(date);
+        long peso = Long.parseLong(vista_RecepcionArticulos.txt_peso.getText());
+        long costo = Long.parseLong(vista_RecepcionArticulos.txt_costo.getText());
+        
+        //Sobre
+        String Contenido = vista_RecepcionArticulos.txt_contenido_sobre.getText();
+        String sobre_tipo = vista_RecepcionArticulos.txt_tiposobre.getSelectedItem().toString();
+        //Paquete
+        String paquete_fragil = vista_RecepcionArticulos.txt_paquete_fragil.getSelectedItem().toString();
+        String paquete_empaque = vista_RecepcionArticulos.txt_paquete_Tipoentrega.getSelectedItem().toString();
+        String paquete_electronico = vista_RecepcionArticulos.txt_paquete_electronico.getSelectedItem().toString();
+        //Revista
+        String nombre_revista = vista_RecepcionArticulos.txt_revista_nombre.getText();
+        String tema_revista = vista_RecepcionArticulos.txt_revista_tema.getSelectedItem().toString();
+        String catalogo_revista = vista_RecepcionArticulos.txt_revista_catalogo.getSelectedItem().toString();
+        
+        boolean tipo= false;
+        
+        //Aereo, Manila
+        if(sobre_tipo.equalsIgnoreCase("Aereo")){
+            tipo = false;
+        }else{
+            tipo= true;
+        }                                
+        
+        boolean paquete_fragil_boolean = false;
+        if(paquete_fragil.equalsIgnoreCase("NO")){
+            paquete_fragil_boolean = false;
+        }else{
+            paquete_fragil_boolean= true;
+        }
+        
+        boolean paquete_empaque_boolean = false;
+        if(paquete_empaque.equalsIgnoreCase("Bolsa")){
+            paquete_empaque_boolean = false;
+        }else{
+            paquete_empaque_boolean= true;
+        }
+        
+        boolean paquete_electronico_boolean = false;
+        if(paquete_electronico.equalsIgnoreCase("NO")){
+            paquete_electronico_boolean = false;
+        }else{
+            paquete_electronico_boolean= true;
+        }
+                        
+        boolean revista_catalogo_boolean = false;
+        if(catalogo_revista.equalsIgnoreCase("NO")){
+            revista_catalogo_boolean = false;
+        }else{
+            revista_catalogo_boolean= true;
+        }
+        
+        
+        Paquete paquete = new Paquete(paquete_fragil_boolean, paquete_empaque_boolean, paquete_electronico_boolean);
+        Revista revista = new Revista(nombre_revista, tema_revista, revista_catalogo_boolean);
+        Sobre sobre = new Sobre(true, Contenido);
+        
+        
+        
     }
     
     public void Modificar(){

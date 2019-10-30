@@ -171,9 +171,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void BtnRecepcionArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRecepcionArticulosActionPerformed
-        RecepcionArticulos abrir= new RecepcionArticulos();
-        abrir.setVisible(true);
-        //this.setVisible(false);
+        
     }//GEN-LAST:event_BtnRecepcionArticulosActionPerformed
 
     private void CompraVentaDolarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompraVentaDolarActionPerformed
@@ -187,15 +185,11 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAdministracionClientesActionPerformed
 
     private void BtnRetiroArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRetiroArticulosActionPerformed
-        RetiroArticulos abrir= new RetiroArticulos();
-        abrir.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_BtnRetiroArticulosActionPerformed
 
     private void BtnAdministracionEntregablesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdministracionEntregablesActionPerformed
-        AdministracionEntregables abrir= new AdministracionEntregables();
-        abrir.setVisible(true);
-        this.setVisible(false);
+      
     }//GEN-LAST:event_BtnAdministracionEntregablesActionPerformed
 
     /**

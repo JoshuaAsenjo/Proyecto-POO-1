@@ -12,11 +12,26 @@ import java.util.ArrayList;
  * @author joshu
  */
 public class AdministradorEntregables {
-    private ArrayList<Entregable> listaEntregables;
+    private ArrayList<Entregable> listaEntregables = new ArrayList<Entregable>();
     private ArrayList<Entregable> listaFechaIngreso;
     private ArrayList<Entregable> listaFechaRetiro;
     private ArrayList<Entregable> listaPorRetirar;
 
+    
+    public void Insertar(Entregable e){
+        listaEntregables.add(e);
+    }
+    
+    public ArrayList<Entregable> MostrarEntregables(int id_cliente){
+        ArrayList<Entregable> buscarCliente = new ArrayList<>();
+        for(int i = 0; i<listaEntregables.size();i++){
+            if(listaEntregables.get(i).getIdRemitente() == id_cliente){
+                buscarCliente.add(listaEntregables.get(i));
+            }
+        }
+        return buscarCliente;
+    }
+    
     public AdministradorEntregables(ArrayList<Entregable> listaEntregables) {
         this.listaEntregables = listaEntregables;
     }

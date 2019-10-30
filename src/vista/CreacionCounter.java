@@ -113,7 +113,7 @@ public class CreacionCounter extends javax.swing.JFrame {
 
         jLabelFondoCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoCounter.jpg"))); // NOI18N
         jLabelFondoCounter.setName(""); // NOI18N
-        getContentPane().add(jLabelFondoCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(-9, -4, 600, 460));
+        getContentPane().add(jLabelFondoCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(-9, -4, 600, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
