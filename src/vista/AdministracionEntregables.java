@@ -27,27 +27,108 @@ public class AdministracionEntregables extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTituloAdmEntre = new javax.swing.JLabel();
+        btnIdCliente = new javax.swing.JToggleButton();
+        btnFIngreso = new javax.swing.JToggleButton();
+        btnFRetiro = new javax.swing.JToggleButton();
+        btnPendientes = new javax.swing.JToggleButton();
+        tablaAdmiEntre = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        dateIngreso = new com.toedter.calendar.JDateChooser();
+        dateRetiro = new com.toedter.calendar.JDateChooser();
+        txtIdCliente = new javax.swing.JTextField();
         FondoEntregables = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblTituloAdmEntre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTituloAdmEntre.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloAdmEntre.setText("Administrador de Entregables");
+        getContentPane().add(lblTituloAdmEntre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 270, 20));
+
+        btnIdCliente.setBackground(new java.awt.Color(0, 102, 153));
+        btnIdCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnIdCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btnIdCliente.setText("Consultar por ID Cliente");
+        btnIdCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIdClienteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+
+        btnFIngreso.setBackground(new java.awt.Color(0, 102, 153));
+        btnFIngreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnFIngreso.setForeground(new java.awt.Color(255, 255, 255));
+        btnFIngreso.setText("Consultar por Fecha Ingreso");
+        btnFIngreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFIngresoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnFIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+
+        btnFRetiro.setBackground(new java.awt.Color(0, 102, 153));
+        btnFRetiro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnFRetiro.setForeground(new java.awt.Color(255, 255, 255));
+        btnFRetiro.setText("Consultar por Fecha Retiro");
+        getContentPane().add(btnFRetiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
+
+        btnPendientes.setBackground(new java.awt.Color(0, 102, 153));
+        btnPendientes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPendientes.setForeground(new java.awt.Color(255, 255, 255));
+        btnPendientes.setText("Consultar Pendientes");
+        getContentPane().add(btnPendientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
+
+        tablaAdmiEntre.setBackground(new java.awt.Color(0, 102, 153));
+
+        jTable1.setBackground(new java.awt.Color(0, 153, 153));
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID Cliente", "Casillero", "ID Entregable", "Estado", "Costo"
+            }
+        ));
+        jTable1.setGridColor(new java.awt.Color(0, 0, 0));
+        tablaAdmiEntre.setViewportView(jTable1);
+
+        getContentPane().add(tablaAdmiEntre, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 550, 450));
+        getContentPane().add(dateIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, -1, -1));
+        getContentPane().add(dateRetiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, -1, -1));
+
+        txtIdCliente.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtIdCliente.setText("Digite ID Cliente");
+        txtIdCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtIdClienteMouseClicked(evt);
+            }
+        });
+        getContentPane().add(txtIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 110, 30));
 
         FondoEntregables.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoCounter.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(FondoEntregables, javax.swing.GroupLayout.PREFERRED_SIZE, 905, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(FondoEntregables, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(FondoEntregables, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 950, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIdClienteActionPerformed
+
+    private void txtIdClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdClienteMouseClicked
+        txtIdCliente.setText("");        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdClienteMouseClicked
+
+    private void btnFIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFIngresoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFIngresoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +167,15 @@ public class AdministracionEntregables extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FondoEntregables;
+    public javax.swing.JToggleButton btnFIngreso;
+    public javax.swing.JToggleButton btnFRetiro;
+    public javax.swing.JToggleButton btnIdCliente;
+    public javax.swing.JToggleButton btnPendientes;
+    public com.toedter.calendar.JDateChooser dateIngreso;
+    public com.toedter.calendar.JDateChooser dateRetiro;
+    public javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblTituloAdmEntre;
+    private javax.swing.JScrollPane tablaAdmiEntre;
+    public javax.swing.JTextField txtIdCliente;
     // End of variables declaration//GEN-END:variables
 }
